@@ -1,13 +1,16 @@
-import MainNavigationStyles from "./MainNavigation.css"
+import MainNavigationStyles from "~/styles/components/MainNavigation/MainNavigation.css"
 import DollarIcon from "~/assets/Icon/Dollar-Circle-Icon"
 
 export default function MainNavigation() {
   return (
     <div className="MainNavigation">
-      <div className="nav-header">
+      <div className="MainNavigation__nav-header">
         <DollarIcon />
-        <h1 className="nav-title">Finance Manager</h1>
+        <h1 className="MainNavigation__nav-title">Finance Manager</h1>
       </div>
+      <ul>
+        <li></li>
+      </ul>
     </div>
   )
 }
