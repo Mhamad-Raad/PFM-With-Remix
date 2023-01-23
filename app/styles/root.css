@@ -15,21 +15,21 @@
   justify-content: center;
 }
 
-.MainNavigation {
+.main-nav-bg {
   width: 250px;
   height: 100vh;
   background: linear-gradient(180deg, #30475E 0%, #222831 100%);
   display: flex;
   flex-direction: column;
 }
-.MainNavigation__nav-header {
+.main-nav-bg__nav-header {
   margin-top: 26px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.MainNavigation__nav-title {
+.main-nav-bg__nav-title {
   padding-top: 1px;
   color: rgb(240, 84, 84);
   font-family: "Inter";

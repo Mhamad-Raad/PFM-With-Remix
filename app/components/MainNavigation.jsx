@@ -1,15 +1,21 @@
 import MainNavigationStyles from "~/styles/components/MainNavigation/MainNavigation.css"
 import DollarIcon from "~/assets/Icon/Dollar-Circle-Icon"
+import { Link } from "@remix-run/react"
 
 export default function MainNavigation() {
   return (
-    <div className="MainNavigation">
-      <div className="MainNavigation__nav-header">
+    <div className="main-nav-bg">
+      <div className="main-nav-bg__nav-header">
         <DollarIcon />
-        <h1 className="MainNavigation__nav-title">Finance Manager</h1>
+        <h1 className="main-nav-bg__nav-title">Finance Manager</h1>
       </div>
       <ul>
-        <li></li>
+        <li>
+          <Link to="/">Overview</Link>
+        </li>
+        <li>
+          <Link to="/history">History</Link>
+        </li>
       </ul>
     </div>
   )
