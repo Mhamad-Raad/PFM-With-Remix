@@ -22,4 +22,29 @@
     font-size: 22px;
     line-height: 27px;
   }
+
+  ul {
+    margin-top: 90px;
+    list-style: none;
+    padding-left: 22px;
+
+    li {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 27px;
+      margin-bottom: 30px;
+
+      a {
+        color: #D4D4D8;
+        text-decoration: none;
+
+        &.active {
+          color: white;
+        }
+      }
+      
+    }
+  }
 }

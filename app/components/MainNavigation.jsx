@@ -1,6 +1,6 @@
 import MainNavigationStyles from "~/styles/components/MainNavigation/MainNavigation.css"
 import DollarIcon from "~/assets/Icon/Dollar-Circle-Icon"
-import { Link } from "@remix-run/react"
+import { NavLink } from "@remix-run/react"
 
 export default function MainNavigation() {
   return (
@@ -11,10 +11,10 @@ export default function MainNavigation() {
       </div>
       <ul>
         <li>
-          <Link to="/">Overview</Link>
+          <NavLink to="/">Overview</NavLink>
         </li>
         <li>
-          <Link to="/history">History</Link>
+          <NavLink to="/history">Transaction History</NavLink>
         </li>
       </ul>
     </div>
