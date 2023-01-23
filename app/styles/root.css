@@ -30,6 +30,7 @@
   align-items: center;
 }
 .MainNavigation__nav-title {
+  padding-top: 1px;
   color: rgb(240, 84, 84);
   font-family: "Inter";
   font-style: normal;
