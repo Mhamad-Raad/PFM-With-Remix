@@ -8,15 +8,20 @@ import {
 } from "@remix-run/react"
 
 import rootStyles from "~/styles/root.css"
+import MainNavigation, {
+  links as MainNavigationStyles,
+} from "~/components/MainNavigation"
 
 /**
  * @returns {import("@remix-run/node").LinkDescriptor[]}
  */
+
 export const links = () => [
   {
     rel: "stylesheet",
     href: rootStyles,
   },
+  ...MainNavigationStyles(),
 ]
 
 /**
@@ -36,6 +41,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <MainNavigation />
         <Outlet />
         <ScrollRestoration />
         <Scripts />

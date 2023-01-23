@@ -1,0 +1,24 @@
+.MainNavigation {
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(180deg, #30475E 0%, #222831 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-header {
+  margin-top: 26px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-title {
+  color: rgba(240, 84, 84, 1);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 27px;
+}
