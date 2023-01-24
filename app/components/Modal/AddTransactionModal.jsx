@@ -4,7 +4,8 @@ import ModalForm from "./ModalForm"
 
 export default function AddTransactionModal({ closeHandler }) {
   return (
-    <div className="modal-bg">
+    <>
+      <div className="modal-bg" onClick={closeHandler} />
       <div className="modal">
         <div className="modal__modal-header">
           <h2>Add Transaction</h2>
@@ -14,7 +15,7 @@ export default function AddTransactionModal({ closeHandler }) {
         </div>
         <ModalForm closeHandler={closeHandler} />
       </div>
-    </div>
+    </>
   )
 }
 
