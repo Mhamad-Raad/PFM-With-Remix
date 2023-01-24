@@ -36,11 +36,11 @@ const ModalForm = ({ closeHandler }) => {
             Type
           </label>
           <div className="row radio-btns">
-            <input type="radio" name="income" id="income" value="income" />
+            <input type="radio" name="type" id="income" value="income" />
             <label htmlFor="income" className="income-label">
               Income
             </label>
-            <input type="radio" name="expense" id="expense" value="expense" />
+            <input type="radio" name="type" id="expense" value="expense" />
             <label htmlFor="expense" className="expense-label">
               Expense
             </label>
@@ -48,7 +48,7 @@ const ModalForm = ({ closeHandler }) => {
         </div>
         <div className="column">
           <label htmlFor="description">Description</label>
-          <input type="text" id="description" name="description" />
+          <textarea type="text" id="description" name="description" />
         </div>
       </div>
       <div className="submit-btns">

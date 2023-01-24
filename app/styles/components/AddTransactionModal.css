@@ -81,6 +81,9 @@
   width: 223px;
   height: 49px;
 }
+.modal form #amount, .modal form #description {
+  padding: 10px;
+}
 .modal form .type-section {
   margin-right: 140px;
 }
