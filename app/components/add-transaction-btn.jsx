@@ -1,12 +1,8 @@
 import AddTransactionButtonStyles from "~/styles/components/add-transaction-btn.css"
 
-const AddTransactionButton = ({ clickHandler }) => {
+const AddTransactionButton = ({ clickHandler, type = "button" }) => {
   return (
-    <button
-      type="button"
-      className="add-transaction-btn"
-      onClick={clickHandler}
-    >
+    <button type={type} className="add-transaction-btn" onClick={clickHandler}>
       Add Transaction
     </button>
   )

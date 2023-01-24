@@ -9,9 +9,9 @@ const CloseIcon = () => (
     <path
       d="M2 18L18 2M2 2L18 18"
       stroke="#111827"
-      stroke-width="3"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )

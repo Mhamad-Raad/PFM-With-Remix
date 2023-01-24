@@ -1,21 +1,30 @@
+import { Form, useTransition as useNavigation } from "@remix-run/react"
+import { useRef } from "react"
 import AddTransactionButton from "../add-transaction-btn"
 
 const ModalForm = ({ closeHandler }) => {
+  const formRef = useRef()
+  const navigation = useNavigation()
+  const isAdding = navigation.state === "submitting"
+  console.log(navigation.state)
+  if (isAdding) {
+    formRef.current?.reset()
+    // closeHandler()
+  }
+
   return (
-    <form>
+    <Form ref={formRef} method="post">
       <div className="row">
         <div className="column">
           <label htmlFor="category">Category</label>
-          <select id="category" name="category">
-            <option value="Tech" selected>
-              Tech
-            </option>
+          <select id="category" name="category" defaultValue={"Tech"} required>
+            <option value="Tech">Tech</option>
             <option value="Food">Food</option>
             <option value="Entertainment">Entertainment</option>
           </select>
         </div>
         <div className="column">
-          <label for="date">Date</label>
+          <label htmlFor="date">Date</label>
           <input
             type="date"
             id="date"
@@ -36,7 +45,13 @@ const ModalForm = ({ closeHandler }) => {
             Type
           </label>
           <div className="row radio-btns">
-            <input type="radio" name="type" id="income" value="income" />
+            <input
+              type="radio"
+              name="type"
+              id="income"
+              value="income"
+              defaultChecked
+            />
             <label htmlFor="income" className="income-label">
               Income
             </label>
@@ -48,16 +63,16 @@ const ModalForm = ({ closeHandler }) => {
         </div>
         <div className="column">
           <label htmlFor="description">Description</label>
-          <textarea type="text" id="description" name="description" />
+          <textarea type="text" id="description" name="description" required />
         </div>
       </div>
       <div className="submit-btns">
         <button type="button" className="dismiss-btn" onClick={closeHandler}>
           Dismiss
         </button>
-        <AddTransactionButton />
+        <AddTransactionButton type="submit" />
       </div>
-    </form>
+    </Form>
   )
 }
 
