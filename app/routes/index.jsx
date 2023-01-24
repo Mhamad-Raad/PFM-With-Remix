@@ -3,6 +3,9 @@ export default function Overview() {
   return (
     <div className="overview-page">
       <UpBar title="Overview" />
+      <button type="button" className="overview-page__add-transaction-btn">
+        Add Transaction
+      </button>
     </div>
   )
 }
