@@ -6,6 +6,7 @@
 }
 
 body {
+  font-family: "Inter";
   background: #E8E8E8;
 }
 
@@ -20,7 +21,6 @@ main {
 }
 
 .overview-page {
-  font-family: "Inter";
   width: 100%;
   height: 100vh;
 }
@@ -39,11 +39,12 @@ main {
 }
 
 .main-nav-bg {
-  width: 250px;
+  width: 300px;
   height: 100vh;
   background: linear-gradient(180deg, #30475E 0%, #222831 100%);
   display: flex;
   flex-direction: column;
+  padding: 0 5px;
 }
 .main-nav-bg__nav-header {
   margin-top: 26px;
