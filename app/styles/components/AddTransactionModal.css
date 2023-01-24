@@ -34,6 +34,10 @@
   line-height: 19px;
   color: #000000;
 }
+.modal__modal-header button {
+  background: transparent;
+  border: none;
+}
 .modal form {
   display: flex;
   flex-direction: column;
@@ -46,6 +50,7 @@
   font-size: 16px;
   line-height: 19px;
   color: #000000;
+  margin-bottom: 10px;
 }
 .modal form select {
   padding: 6px 8px;
@@ -83,10 +88,21 @@
   margin-top: 55px;
 }
 .modal form .type-title {
-  margin-bottom: 26px;
+  margin-bottom: 26px !important;
 }
 .modal form .income-label {
   margin-right: 35px;
+  margin-left: 10px;
+  margin-bottom: 0;
+}
+.modal form .expense-label {
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+.modal form .radio-btns {
+  display: flex;
+  align-items: center;
+  margin-bottom: 26px;
 }
 .modal form #description {
   width: 584px;
@@ -107,7 +123,7 @@
   line-height: 24px;
   padding: 8px 16px;
   height: 40px;
-  margin-right: 60px;
+  margin-right: 50px;
   background: transparent;
   color: black;
   border-radius: 50px;

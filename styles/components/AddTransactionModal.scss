@@ -34,6 +34,11 @@
       line-height: 19px;
       color: #000000;
     }
+
+    button {
+      background: transparent;
+      border: none;
+    }
   }
 
   form {
@@ -48,6 +53,7 @@
       font-size: 16px;
       line-height: 19px;
       color: #000000;
+      margin-bottom: 10px;
     }
 
     select {
@@ -91,11 +97,24 @@
     }
 
     .type-title{
-      margin-bottom: 26px;
+      margin-bottom: 26px !important;
     }
 
     .income-label {
       margin-right: 35px;
+      margin-left: 10px;
+      margin-bottom: 0;
+    }
+
+    .expense-label {
+      margin-bottom: 0;
+      margin-left: 10px;
+    }
+
+    .radio-btns {
+      display: flex;
+      align-items: center;
+      margin-bottom: 26px;
     }
 
     #description {
@@ -118,7 +137,7 @@
         line-height: 24px;
         padding: 8px 16px;
         height: 40px;
-        margin-right: 60px;
+        margin-right: 50px;
         background: transparent;
         color: black;
         border-radius: 50px;

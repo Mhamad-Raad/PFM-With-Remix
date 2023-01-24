@@ -1,6 +1,6 @@
 import AddTransactionButton from "../add-transaction-btn"
 
-const ModalForm = () => {
+const ModalForm = ({ closeHandler }) => {
   return (
     <form>
       <div className="row">
@@ -52,7 +52,9 @@ const ModalForm = () => {
         </div>
       </div>
       <div className="submit-btns">
-        <button type="button" className='dismiss-btn'>Dismiss</button>
+        <button type="button" className="dismiss-btn" onClick={closeHandler}>
+          Dismiss
+        </button>
         <AddTransactionButton />
       </div>
     </form>

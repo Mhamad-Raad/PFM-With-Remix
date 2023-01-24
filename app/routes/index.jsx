@@ -12,9 +12,14 @@ export default function Overview() {
   const switchModaltoTrue = () => {
     setIsModalOpen(true)
   }
+
+  const switchModaltoFalse = () => {
+    setIsModalOpen(false)
+  }
+
   return (
     <div className="overview-page">
-      {isModalOpen && <Modal />}
+      {isModalOpen && <Modal closeHandler={switchModaltoFalse} />}
       <UpBar title="Overview" />
       <AddTransactionButton clickHandler={switchModaltoTrue} />
     </div>
