@@ -40,3 +40,57 @@
   padding-left: 38px;
   margin-top: 70px;
 }
+.modal form label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+.modal form select {
+  padding: 6px 8px;
+  background: #FFFFFF;
+  box-shadow: inset 0px 0px 1px 0.1px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  width: 300px;
+  height: 48px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #111827;
+  margin-right: 52px;
+}
+.modal form #date {
+  background: #FFFFFF;
+  box-shadow: inset 0px 0px 1px 0.1px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  width: 240px;
+  height: 48px;
+  padding: 6px 8px 6px 12px;
+  margin-right: 52px;
+}
+.modal form #amount {
+  border: 1px solid #94A3B8;
+  border-radius: 7px;
+  width: 223px;
+  height: 49px;
+}
+.modal form .type-section {
+  margin-right: 140px;
+}
+.modal form .second-row {
+  margin-top: 55px;
+}
+.modal form .type-title {
+  margin-bottom: 26px;
+}
+.modal form .income-label {
+  margin-right: 35px;
+}
+.modal form #description {
+  width: 584px;
+  height: 142px;
+  border-radius: 7px;
+  border: 1px solid #94A3B8;
+}

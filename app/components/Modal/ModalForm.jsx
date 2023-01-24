@@ -13,23 +13,35 @@ const ModalForm = () => {
           </select>
         </div>
         <div className="column">
-          <label for="birthday">Birthday:</label>
-          <input type="date" id="birthday" name="birthday"></input>
+          <label for="date">Date</label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            placeholder="Date"
+            required
+          />
         </div>
         <div className="column">
           <label htmlFor="amount">Amount</label>
-          <input type="number" id="amount" name="amount" />
+          <input type="number" id="amount" name="amount" required />
         </div>
       </div>
 
-      <div className="row">
-        <div className="column">
-          <label htmlFor="type">Type</label>
-          <div className="row">
+      <div className="row second-row">
+        <div className="column type-section">
+          <label htmlFor="type" className="type-title">
+            Type
+          </label>
+          <div className="row radio-btns">
             <input type="radio" name="income" id="income" value="income" />
-            <label htmlFor="income">Income</label>
+            <label htmlFor="income" className="income-label">
+              Income
+            </label>
             <input type="radio" name="expense" id="expense" value="expense" />
-            <label htmlFor="expense">Expense</label>
+            <label htmlFor="expense" className="expense-label">
+              Expense
+            </label>
           </div>
         </div>
         <div className="column">
