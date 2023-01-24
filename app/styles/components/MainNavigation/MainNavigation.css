@@ -15,7 +15,6 @@
 .main-nav-bg__nav-title {
   padding-top: 1px;
   color: rgb(240, 84, 84);
-  font-family: "Inter";
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
@@ -27,7 +26,6 @@
   padding-left: 22px;
 }
 .main-nav-bg ul li {
-  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 22px;

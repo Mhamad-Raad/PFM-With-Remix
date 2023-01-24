@@ -1,5 +1,5 @@
 .main-nav-bg {
-  width: 250px;
+  width: 250px ;
   height: 100vh;
   background: linear-gradient(180deg, #30475E 0%, #222831 100%);
   display: flex;
@@ -16,7 +16,6 @@
   &__nav-title {
     padding-top: 1px;
     color: rgba(240, 84, 84, 1);
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -29,7 +28,6 @@
     padding-left: 22px;
 
     li {
-      font-family: 'Inter';
       font-style: normal;
       font-weight: 400;
       font-size: 22px;
