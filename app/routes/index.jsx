@@ -1,7 +1,7 @@
 import { useState } from "react"
 import UpBar, { links as UpBarStyles } from "~/components/UpBar"
-import { links as ModalStyles } from "~/components/AddTransactionModal"
-import Modal from "~/components/AddTransactionModal"
+import { links as ModalStyles } from "~/components/Modal/AddTransactionModal"
+import Modal from "~/components/Modal/AddTransactionModal"
 
 export default function Overview() {
   const [isModalOpen, setIsModalOpen] = useState(false)
