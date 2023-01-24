@@ -6,14 +6,18 @@ import Modal from "~/components/AddTransactionModal"
 export default function Overview() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const switchModal = () => {
-    setIsModalOpen(!isModalOpen)
+  const switchModaltoTrue = () => {
+    setIsModalOpen(true)
   }
   return (
     <div className="overview-page">
       {isModalOpen && <Modal />}
       <UpBar title="Overview" />
-      <button type="button" className="overview-page__add-transaction-btn" onClick={switchModal}>
+      <button
+        type="button"
+        className="overview-page__add-transaction-btn"
+        onClick={switchModaltoTrue}
+      >
         Add Transaction
       </button>
     </div>

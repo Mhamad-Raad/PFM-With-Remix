@@ -1,5 +1,5 @@
 import MainNavigationStyles from "~/styles/components/MainNavigation/MainNavigation.css"
-import DollarIcon from "~/assets/Icon/Dollar-Circle-Icon"
+import DollarIcon from "~/assets/Icons/Dollar-Circle-Icon"
 import { NavLink } from "@remix-run/react"
 
 export default function MainNavigation() {
