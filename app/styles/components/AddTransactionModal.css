@@ -94,3 +94,22 @@
   border-radius: 7px;
   border: 1px solid #94A3B8;
 }
+.modal form .submit-btns {
+  margin-top: 90px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 70px;
+}
+.modal form .submit-btns .dismiss-btn {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 8px 16px;
+  height: 40px;
+  margin-right: 60px;
+  background: transparent;
+  color: black;
+  border-radius: 50px;
+  border: 1.5px solid black;
+}

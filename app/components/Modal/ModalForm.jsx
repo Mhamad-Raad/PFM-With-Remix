@@ -52,7 +52,7 @@ const ModalForm = () => {
         </div>
       </div>
       <div className="submit-btns">
-        <button type="button">Dismiss</button>
+        <button type="button" className='dismiss-btn'>Dismiss</button>
         <AddTransactionButton />
       </div>
     </form>
