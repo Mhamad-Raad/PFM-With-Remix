@@ -30,9 +30,11 @@ export default function Overview() {
 export async function action({ request }) {
   const formData = await request.formData()
   const body = Object.fromEntries(formData.entries())
-  console.log(body)
-
-  console.log(request)
+  
+  await fetch("https://cash-management-c186c-default-rtdb.firebaseio.com/changes.json", {
+    method: "POST",
+    body: JSON.stringify(body),
+  })
 
   return redirect("/")
 }
