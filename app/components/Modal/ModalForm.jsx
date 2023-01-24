@@ -1,3 +1,5 @@
+import AddTransactionButton from "../add-transaction-btn"
+
 const ModalForm = () => {
   return (
     <form>
@@ -49,8 +51,10 @@ const ModalForm = () => {
           <input type="text" id="description" name="description" />
         </div>
       </div>
-      <button type="button">Dismiss</button>
-      <button type="button">Add Transaction</button>
+      <div className="submit-btns">
+        <button type="button">Dismiss</button>
+        <AddTransactionButton />
+      </div>
     </form>
   )
 }

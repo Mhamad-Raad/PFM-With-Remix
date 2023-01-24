@@ -2,6 +2,9 @@ import { useState } from "react"
 import UpBar, { links as UpBarStyles } from "~/components/UpBar"
 import { links as ModalStyles } from "~/components/Modal/AddTransactionModal"
 import Modal from "~/components/Modal/AddTransactionModal"
+import AddTransactionButton, {
+  links as AddTransactionButtonStyles,
+} from "~/components/add-transaction-btn"
 
 export default function Overview() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -13,17 +16,11 @@ export default function Overview() {
     <div className="overview-page">
       {isModalOpen && <Modal />}
       <UpBar title="Overview" />
-      <button
-        type="button"
-        className="overview-page__add-transaction-btn"
-        onClick={switchModaltoTrue}
-      >
-        Add Transaction
-      </button>
+      <AddTransactionButton clickHandler={switchModaltoTrue} />
     </div>
   )
 }
 
 export function links() {
-  return [...UpBarStyles(), ...ModalStyles()]
+  return [...UpBarStyles(), ...ModalStyles(), ...AddTransactionButtonStyles()]
 }
