@@ -22,4 +22,10 @@
       -webkit-box-orient: vertical;
     }
   }
+
+  &__right {
+    gap: 14px;
+    justify-content: flex-end;
+    align-items: center;
+  }
 }

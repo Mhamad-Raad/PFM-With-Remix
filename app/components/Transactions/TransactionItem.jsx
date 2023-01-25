@@ -4,6 +4,26 @@ import StudyIcon from "~/assets/Icons/StudyIcon"
 import TechIcon from "~/assets/Icons/TechIcon"
 
 export default function TransactionItem({ transaction }) {
+  const transactionDate = new Date(transaction.date)
+  const today = new Date()
+
+  // get the date of yestrday
+  const yesterday = new Date()
+  yesterday.setDate(yesterday.getDate() - 1)
+
+  let shownDate
+
+  // if the transaction is from today, show "Today"
+  if (transactionDate.getDate() === today.getDate()) {
+    shownDate = "Today"
+  } else if (transactionDate.getDate() === yesterday.getDate()) {
+    // if the transaction is from yesterday, show "Yesterday"
+    shownDate = "Yesterday"
+  } else {
+    // if the transaction is from any other day, show the date
+    shownDate = transactionDate.toLocaleDateString()
+  }
+
   let ShownIcon
   if (transaction.category === "work") {
     ShownIcon = WorkIcon
@@ -15,12 +35,13 @@ export default function TransactionItem({ transaction }) {
   return (
     <div className="item row">
       <div className="item__left row">
-          <ShownIcon />
+        <ShownIcon />
         <div className="item__left__text">
-          <p className="item__left__text__title">
-            {transaction.description}
-          </p>
+          <p className="item__left__text__title">{transaction.description}</p>
         </div>
+      </div>
+      <div className="item__right row">
+        <p className="item__right__date">{shownDate}</p>
       </div>
     </div>
   )

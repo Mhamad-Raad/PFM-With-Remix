@@ -10,25 +10,20 @@ import AddTransactionButton, {
 import ListMoneyTags, {
   links as ListMoneyTagsStyle,
 } from "~/components/MoneyTags/ListMoneyTags"
-import TransactionList, {links as TransactionListStyle} from '~/components/Transactions/TransactionList'
+import TransactionList, {
+  links as TransactionListStyle,
+} from "~/components/Transactions/TransactionList"
 
 const getWeekNumber = (date) => {
-  const currentDate = new Date()
-  const startDate = date
-  var days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000))
-
-  var weekNumber = Math.ceil(days / 7)
-
+  console.log("date", date.getDay())
+  const weekNumber = Math.floor(date.getDate() / 7)
   return weekNumber
 }
 
 const getCurrentWeekNumber = () => {
   const currentDate = new Date()
-  const startDate = new Date(currentDate.getFullYear(), 0, 1)
-  var days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000))
-
-  var weekNumber = Math.ceil(days / 7)
-
+  const weekNumber = Math.floor(currentDate.getDate() / 7)
+  console.log("week", weekNumber)
   return weekNumber
 }
 
@@ -41,7 +36,6 @@ export default function Overview() {
   let userIncome = 0
   let userExpense = 0
 
-
   const currentDateYear = new Date().getFullYear()
   const currentDateMonth = new Date().getMonth()
   const currentWeek = getCurrentWeekNumber()
@@ -51,6 +45,8 @@ export default function Overview() {
   let showntransactions = []
   let shownTitle = "Empty"
 
+  console.log("current", transactions)
+
   Object.keys(transactions)?.forEach(function (key) {
     if (transactions[key].type === "income") {
       userIncome += +transactions[key].amount
@@ -58,23 +54,26 @@ export default function Overview() {
       userExpense += +transactions[key].amount
     }
     const date = new Date(transactions[key].date)
-    if (date.getFullYear() === currentDateYear) {
+    if (currentWeek === getWeekNumber(date)) {
+      thisWeekTransactions.push({
+        ...transactions[key],
+        id: key,
+      })
+    } else if (date.getMonth() === currentDateMonth) {
+      thisMonthTransactions.push({
+        ...transactions[key],
+        id: key,
+      })
+    } else if (date.getFullYear() === currentDateYear) {
       thisYearTransactions.push({
         ...transactions[key],
         id: key,
       })
-      if (date.getMonth() === currentDateMonth) {
-        thisMonthTransactions.push({
-          ...transactions[key],
-          id: key,
-        })
-        if (getWeekNumber(date) === currentWeek) {
-          thisWeekTransactions.push({
-            ...transactions[key],
-            id: key,
-          })
-        }
-      }
+    } else {
+      showntransactions.push({
+        ...transactions[key],
+        id: key,
+      })
     }
   })
   userBalance = userIncome - userExpense
@@ -89,6 +88,7 @@ export default function Overview() {
     if (thisMonthTransactions.length > 10) {
       thisMonthTransactions = thisMonthTransactions.slice(0, 10)
     }
+    // console.log("month")
     showntransactions = thisMonthTransactions
     shownTitle = "This Month"
   } else if (thisYearTransactions.length > 0) {
@@ -97,6 +97,9 @@ export default function Overview() {
     }
     showntransactions = thisYearTransactions
     shownTitle = "This Year"
+  } else {
+    showntransactions.splice(0, 10)
+    shownTitle = "No Recent Transaction"
   }
 
   const switchModaltoTrue = () => {
@@ -106,9 +109,6 @@ export default function Overview() {
   const switchModaltoFalse = () => {
     setIsModalOpen(false)
   }
-
-  console.log(showntransactions)
-
 
   return (
     <>

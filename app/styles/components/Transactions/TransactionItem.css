@@ -21,3 +21,8 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+.item__right {
+  gap: 14px;
+  justify-content: flex-end;
+  align-items: center;
+}
