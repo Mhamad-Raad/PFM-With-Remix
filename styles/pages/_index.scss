@@ -9,5 +9,10 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 80%;
+    &__transaction-btn-bg {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
   }
 }

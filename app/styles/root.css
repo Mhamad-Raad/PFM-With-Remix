@@ -42,6 +42,11 @@ main {
   align-items: flex-start;
   width: 80%;
 }
+.overview-page__content__transaction-btn-bg {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
 
 .main-nav-bg {
   width: 300px;

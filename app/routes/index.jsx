@@ -112,7 +112,9 @@ export default function Overview() {
           expense={userExpense}
           balance={userBalance}
         />
-        <AddTransactionButton clickHandler={switchModaltoTrue} />
+        <div className="overview-page__content__transaction-btn-bg">
+          <AddTransactionButton clickHandler={switchModaltoTrue} />
+        </div>
       </main>
     </div>
   )
