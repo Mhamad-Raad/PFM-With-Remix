@@ -1,7 +1,11 @@
-import TransactionsListStyle from "~/styles/components/Transactions/TransactionsList.css"
-import TransactionItem from "./TransactionItem"
+import TransactionsListStyle from "~/styles/components/Transactions/TransactionList.css"
+import TransactionItem, {
+  links as TransactionItemStyle,
+} from "./TransactionItem"
 
-export default function TransactionList({ transactions }) {
+const TransactionList = ({ transactions }) => {
+  console.log("transactions")
+  console.log(transactions)
   return (
     <div className="transactions-List column">
       {transactions.map((transaction) => (
@@ -11,6 +15,11 @@ export default function TransactionList({ transactions }) {
   )
 }
 
+export default TransactionList
+
 export function links() {
-  return [{ rel: "stylesheet", href: TransactionsListStyle }]
+  return [
+    { rel: "stylesheet", href: TransactionsListStyle },
+    ...TransactionItemStyle(),
+  ]
 }

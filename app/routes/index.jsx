@@ -10,9 +10,7 @@ import AddTransactionButton, {
 import ListMoneyTags, {
   links as ListMoneyTagsStyle,
 } from "~/components/MoneyTags/ListMoneyTags"
-// import TransactionList, {
-//   links as TransactionListStyle,
-// } from "~/components/Transactions/TransactionList"
+import TransactionList, {links as TransactionListStyle} from '~/components/Transactions/TransactionList'
 
 const getWeekNumber = (date) => {
   const currentDate = new Date()
@@ -126,7 +124,7 @@ export default function Overview() {
           <h1 className="overview-page__content__transaction-title">
             {shownTitle}
           </h1>
-          {/* <TransactionList transactions={showntransactions} /> */}
+          <TransactionList transactions={showntransactions} />
           <div className="overview-page__content__transaction-btn-bg">
             <AddTransactionButton clickHandler={switchModaltoTrue} />
           </div>
@@ -165,6 +163,6 @@ export function links() {
     ...ModalStyles(),
     ...AddTransactionButtonStyles(),
     ...ListMoneyTagsStyle(),
-    // ...TransactionListStyle(),
+    ...TransactionListStyle(),
   ]
 }
