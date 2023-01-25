@@ -1,10 +1,12 @@
 import TransactionItemStyle from "~/styles/components/Transactions/TransactionItem.css"
-export default function TransactionItem({transaction}) {
-  return <div className="item row">
-    <h1>
-      hey
-    </h1>
-  </div>
+export default function TransactionItem({ transaction }) {
+  return (
+    <div className="item row">
+      <div className="item__left row">
+        
+      </div>
+    </div>
+  )
 }
 
 export function links() {

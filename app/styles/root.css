@@ -53,6 +53,7 @@ main {
   width: 100%;
   display: flex;
   justify-content: end;
+  margin-top: 90px;
 }
 
 .main-nav-bg {
