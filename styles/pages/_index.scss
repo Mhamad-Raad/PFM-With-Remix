@@ -1,4 +1,13 @@
 .overview-page {
   width: 100%;
   height: 100vh;
+
+  &__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 80%;
+  }
 }

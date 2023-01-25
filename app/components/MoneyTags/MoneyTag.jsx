@@ -25,7 +25,7 @@ export default function MoneyTag({
         <h2 style={dominantStyle}>{dominant}</h2>
         <h3 style={detailsBgStyle}>details</h3>
       </div>
-      <h2 className="cash">{`$${cash}`}</h2>
+      <h2 className="money-tag__cash">{`$${cash}`}</h2>
     </div>
   )
 }

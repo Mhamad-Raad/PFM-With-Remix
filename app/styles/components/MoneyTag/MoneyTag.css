@@ -23,7 +23,7 @@
   line-height: 15px;
   border-radius: 12px;
 }
-.money-tag .cash {
+.money-tag__cash {
   font-style: normal;
   font-weight: 500;
   font-size: 30px;

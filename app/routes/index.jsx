@@ -34,8 +34,10 @@ export default function Overview() {
     <div className="overview-page">
       {isModalOpen && <Modal closeHandler={switchModaltoFalse} />}
       <UpBar title="Overview" />
-      <ListMoneyTags />
-      <AddTransactionButton clickHandler={switchModaltoTrue} />
+      <main className="overview-page__content">
+        <ListMoneyTags />
+        <AddTransactionButton clickHandler={switchModaltoTrue} />
+      </main>
     </div>
   )
 }
