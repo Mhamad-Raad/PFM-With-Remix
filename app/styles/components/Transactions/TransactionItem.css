@@ -9,3 +9,15 @@
   padding-left: 15px;
   padding-right: 16px;
 }
+.item__left {
+  gap: 14px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.item__left__text {
+  overflow: hidden;
+  width: 400px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

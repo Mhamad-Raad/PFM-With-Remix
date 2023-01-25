@@ -8,4 +8,18 @@
   padding-bottom: 11px;
   padding-left: 15px;
   padding-right: 16px;
+
+  &__left {
+    gap: 14px;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__text {
+      overflow: hidden;
+      width: 400px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+  }
 }
