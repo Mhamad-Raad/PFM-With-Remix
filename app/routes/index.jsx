@@ -48,6 +48,7 @@ export default function Overview() {
   let thisMonthTransactions = []
   let thisWeekTransactions = []
   let showntransactions = []
+  let shownTitle = "Empty"
 
   Object.keys(transactions)?.forEach(function (key) {
     if (transactions[key].type === "income") {
@@ -82,16 +83,19 @@ export default function Overview() {
       thisWeekTransactions = thisWeekTransactions.slice(0, 10)
     }
     showntransactions = thisWeekTransactions
+    shownTitle = "This Week"
   } else if (thisMonthTransactions.length > 0) {
     if (thisMonthTransactions.length > 10) {
       thisMonthTransactions = thisMonthTransactions.slice(0, 10)
     }
     showntransactions = thisMonthTransactions
+    shownTitle = "This Month"
   } else if (thisYearTransactions.length > 0) {
     if (thisYearTransactions.length > 10) {
       thisYearTransactions = thisYearTransactions.slice(0, 10)
     }
     showntransactions = thisYearTransactions
+    shownTitle = "This Year"
   }
 
   const switchModaltoTrue = () => {
@@ -113,6 +117,9 @@ export default function Overview() {
             expense={userExpense}
             balance={userBalance}
           />
+          <h1 className="overview-page__content__transaction-title">
+            {shownTitle}
+          </h1>
           <div className="overview-page__content__transaction-btn-bg">
             <AddTransactionButton clickHandler={switchModaltoTrue} />
           </div>

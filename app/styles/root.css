@@ -42,6 +42,13 @@ main {
   align-items: flex-start;
   width: 80%;
 }
+.overview-page__content__transaction-title {
+  margin-top: 90px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 27px;
+}
 .overview-page__content__transaction-btn-bg {
   width: 100%;
   display: flex;
