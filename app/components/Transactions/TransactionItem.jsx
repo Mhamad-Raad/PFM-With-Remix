@@ -42,6 +42,15 @@ export default function TransactionItem({ transaction }) {
       </div>
       <div className="item__right row">
         <p className="item__right__date">{shownDate}</p>
+        <p
+          className={`item__right__amount ${
+            transaction.type === "income" ? "income" : "expense"
+          }`}
+        >
+          {transaction.type === "income"
+            ? `+ $${transaction.amount}`
+            : `- $${transaction.amount}`}
+        </p>
       </div>
     </div>
   )
