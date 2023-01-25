@@ -2,11 +2,11 @@ import MoneyTag from "./MoneyTag"
 import MoneyTagStyle from "~/styles/components/MoneyTag/MoneyTag.css"
 import MoneyTagsListStyle from "~/styles/components/MoneyTag/ListMoneyTags.css"
 
-export default function ListMoneyTags() {
+export default function ListMoneyTags({income, expense, balance}) {
   return (
     <div className="money-tags-list row">
       <MoneyTag
-        cash="1000"
+        cash={`${income}`}
         dominant="Income"
         startGradient="#7DD3FC"
         endGradient="#BAE6FD"
@@ -14,7 +14,7 @@ export default function ListMoneyTags() {
         detailsBgColor="rgba(56, 189, 248, 0.75)"
       />
       <MoneyTag
-        cash="25000"
+        cash={`${balance}`}
         dominant="Balance"
         startGradient="#D4D4D8"
         endGradient="#E4E4E7"
@@ -22,7 +22,7 @@ export default function ListMoneyTags() {
         detailsBgColor="rgba(113, 113, 122, 0.75)"
       />
       <MoneyTag
-        cash="4520"
+        cash={`${expense}`}
         dominant="Expense"
         startGradient="#FDA4AF"
         endGradient="#FECDD3 "

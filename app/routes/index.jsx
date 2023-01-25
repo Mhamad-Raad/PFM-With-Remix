@@ -16,11 +16,19 @@ export default function Overview() {
 
   const transactions = useLoaderData()
 
-  // using later
-  // Object.keys(transactions).forEach(function (key, index) {
-  //   console.log('key', key)
-  //   console.log('transactions[key]', transactions[key])
-  // })
+  let userBalance = 0
+  let userIncome = 0
+  let userExpense = 0
+
+  Object.keys(transactions).forEach(function (key, index) {
+    if (transactions[key].type === "income") {
+      userIncome += +transactions[key].amount
+    } else {
+      userExpense += +transactions[key].amount
+    }
+  })
+
+  userBalance = userIncome - userExpense
 
   const switchModaltoTrue = () => {
     setIsModalOpen(true)
@@ -35,7 +43,11 @@ export default function Overview() {
       {isModalOpen && <Modal closeHandler={switchModaltoFalse} />}
       <UpBar title="Overview" />
       <main className="overview-page__content">
-        <ListMoneyTags />
+        <ListMoneyTags
+          income={userIncome}
+          expense={userExpense}
+          balance={userBalance}
+        />
         <AddTransactionButton clickHandler={switchModaltoTrue} />
       </main>
     </div>
