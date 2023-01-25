@@ -7,6 +7,9 @@ import Modal from "~/components/Modal/AddTransactionModal"
 import AddTransactionButton, {
   links as AddTransactionButtonStyles,
 } from "~/components/add-transaction-btn"
+import ListMoneyTags, {
+  links as ListMoneyTagsStyle,
+} from "~/components/MoneyTags/ListMoneyTags"
 
 export default function Overview() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -31,6 +34,7 @@ export default function Overview() {
     <div className="overview-page">
       {isModalOpen && <Modal closeHandler={switchModaltoFalse} />}
       <UpBar title="Overview" />
+      <ListMoneyTags />
       <AddTransactionButton clickHandler={switchModaltoTrue} />
     </div>
   )
@@ -39,7 +43,7 @@ export default function Overview() {
 export async function loader() {
   const res = await fetch(
     "https://cash-management-c186c-default-rtdb.firebaseio.com/changes.json"
-    )
+  )
   return res
 }
 
@@ -59,5 +63,10 @@ export async function action({ request }) {
 }
 
 export function links() {
-  return [...UpBarStyles(), ...ModalStyles(), ...AddTransactionButtonStyles()]
+  return [
+    ...UpBarStyles(),
+    ...ModalStyles(),
+    ...AddTransactionButtonStyles(),
+    ...ListMoneyTagsStyle(),
+  ]
 }
