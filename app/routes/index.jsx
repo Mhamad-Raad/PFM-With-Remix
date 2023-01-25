@@ -103,20 +103,22 @@ export default function Overview() {
   }
 
   return (
-    <div className="overview-page">
+    <>
       {isModalOpen && <Modal closeHandler={switchModaltoFalse} />}
-      <UpBar title="Overview" />
-      <main className="overview-page__content">
-        <ListMoneyTags
-          income={userIncome}
-          expense={userExpense}
-          balance={userBalance}
-        />
-        <div className="overview-page__content__transaction-btn-bg">
-          <AddTransactionButton clickHandler={switchModaltoTrue} />
-        </div>
-      </main>
-    </div>
+      <div className="overview-page">
+        <UpBar title="Overview" />
+        <main className="overview-page__content">
+          <ListMoneyTags
+            income={userIncome}
+            expense={userExpense}
+            balance={userBalance}
+          />
+          <div className="overview-page__content__transaction-btn-bg">
+            <AddTransactionButton clickHandler={switchModaltoTrue} />
+          </div>
+        </main>
+      </div>
+    </>
   )
 }
 

@@ -15,6 +15,10 @@
   height: 605px;
   background: #F8FAFC;
   border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   &__modal-header {
     display: flex;
