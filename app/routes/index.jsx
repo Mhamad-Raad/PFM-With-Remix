@@ -10,6 +10,9 @@ import AddTransactionButton, {
 import ListMoneyTags, {
   links as ListMoneyTagsStyle,
 } from "~/components/MoneyTags/ListMoneyTags"
+import TransactionList, {
+  links as TransactionListStyle,
+} from "~/components/Transactions/TransactionList"
 
 const getWeekNumber = (date) => {
   const currentDate = new Date()
@@ -158,5 +161,6 @@ export function links() {
     ...ModalStyles(),
     ...AddTransactionButtonStyles(),
     ...ListMoneyTagsStyle(),
+    ...TransactionListStyle(),
   ]
 }

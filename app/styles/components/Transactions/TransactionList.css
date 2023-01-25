@@ -1,1 +1,5 @@
-
+.transactions-List {
+  margin-top: 18px;
+  width: 100%;
+  gap: 18px;
+}

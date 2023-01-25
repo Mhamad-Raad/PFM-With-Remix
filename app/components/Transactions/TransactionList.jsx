@@ -2,7 +2,13 @@ import TransactionsListStyle from "~/styles/components/Transactions/Transactions
 import TransactionItem from "./TransactionItem"
 
 export default function TransactionList({ transactions }) {
-  return <div className="transactions-List">TransactionList</div>
+  return (
+    <div className="transactions-List column">
+      {transactions.map((transaction) => (
+        <TransactionItem key={transaction.id} transaction={transaction} />
+      ))}
+    </div>
+  )
 }
 
 export function links() {
