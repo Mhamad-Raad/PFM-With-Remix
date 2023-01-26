@@ -4,8 +4,6 @@ import TransactionItem, {
 } from "./TransactionItem"
 
 const TransactionList = ({ transactions }) => {
-  console.log("transactions")
-  console.log(transactions)
   return (
     <div className="transactions-List column">
       {transactions.map((transaction) => (

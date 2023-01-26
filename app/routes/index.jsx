@@ -15,7 +15,6 @@ import TransactionList, {
 } from "~/components/Transactions/TransactionList"
 
 const getWeekNumber = (date) => {
-  console.log("date", date.getDay())
   const weekNumber = Math.floor(date.getDate() / 7)
   return weekNumber
 }
@@ -23,7 +22,6 @@ const getWeekNumber = (date) => {
 const getCurrentWeekNumber = () => {
   const currentDate = new Date()
   const weekNumber = Math.floor(currentDate.getDate() / 7)
-  console.log("week", weekNumber)
   return weekNumber
 }
 
@@ -45,7 +43,6 @@ export default function Overview() {
   let showntransactions = []
   let shownTitle = "Empty"
 
-  console.log("current", transactions)
 
   Object.keys(transactions)?.forEach(function (key) {
     if (transactions[key].type === "income") {
@@ -145,6 +142,32 @@ export async function loader() {
 export async function action({ request }) {
   const formData = await request.formData()
   const body = Object.fromEntries(formData.entries())
+
+  if (+body.amount === 1) {
+    return {
+      amountErrorMessage: "The money is to low to add as transaction",
+      error: true,
+    }
+  }
+
+  const date = new Date(body.date)
+  const currentDate = new Date()
+  if (date > currentDate) {
+    return {
+      dateErrorMessage: "The date is in the future",
+      error: true,
+    }
+  }
+
+  const description = body.description
+  const upperCaseLetters = description.match(/[A-Z]/g)
+  if (upperCaseLetters?.length > 1) {
+    return {
+      descriptionErrorMessage:
+        "The description has too many upper case letters",
+      error: true,
+    }
+  }
 
   await fetch(
     "https://cash-management-c186c-default-rtdb.firebaseio.com/changes.json",

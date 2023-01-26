@@ -1,4 +1,8 @@
-import { Form, useTransition as useNavigation } from "@remix-run/react"
+import {
+  Form,
+  useTransition as useNavigation,
+  useActionData,
+} from "@remix-run/react"
 import { useRef, useState } from "react"
 import AddTransactionButton from "../add-transaction-btn"
 
@@ -6,9 +10,11 @@ const ModalForm = ({ closeHandler }) => {
   const [transactionType, setTransactionType] = useState("income")
   const formRef = useRef()
   const navigation = useNavigation()
+  const actionData = useActionData()
   const isAdding = navigation.state === "submitting"
-  console.log(navigation.state)
-  if (isAdding) {
+  if (isAdding && actionData !== undefined && !actionData.error) {
+    console.log("error", actionData.error)
+    console.log("adding", isAdding)
     formRef.current?.reset()
     closeHandler()
   }
@@ -66,6 +72,9 @@ const ModalForm = ({ closeHandler }) => {
             onChange={dateChangeHandler}
             required
           />
+          {actionData?.dateErrorMessage && (
+            <p className="error-msg">{actionData.dateErrorMessage}</p>
+          )}
         </div>
         <div className="column">
           <label htmlFor="amount">Amount</label>
@@ -73,6 +82,9 @@ const ModalForm = ({ closeHandler }) => {
             <span>$</span>
             <input type="number" id="amount" name="amount" min={0} required />
           </span>
+          {actionData?.amountErrorMessage && (
+            <p className="error-msg">{actionData.amountErrorMessage}</p>
+          )}
         </div>
       </div>
 
@@ -108,7 +120,17 @@ const ModalForm = ({ closeHandler }) => {
         </div>
         <div className="column">
           <label htmlFor="description">Description</label>
-          <textarea type="text" id="description" name="description" minLength={0} maxLength={350} required />
+          <textarea
+            type="text"
+            id="description"
+            name="description"
+            minLength={0}
+            maxLength={350}
+            required
+          />
+          {actionData?.descriptionErrorMessage && (
+            <p className="error-msg">{actionData.descriptionErrorMessage}</p>
+          )}
         </div>
       </div>
       <div className="submit-btns">
