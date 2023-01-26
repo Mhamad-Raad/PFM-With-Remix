@@ -12,7 +12,7 @@
 
 .modal {
   width: 1012px;
-  height: 605px;
+  // min-height: 605px;
   background: #F8FAFC;
   border-radius: 15px;
   position: absolute;
@@ -163,6 +163,7 @@
       display: flex;
       justify-content: flex-end;
       padding-right: 70px;
+      margin-bottom: 20px;
 
       .dismiss-btn {
         font-style: normal;

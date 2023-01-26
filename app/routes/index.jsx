@@ -43,7 +43,6 @@ export default function Overview() {
   let showntransactions = []
   let shownTitle = "Empty"
 
-
   Object.keys(transactions)?.forEach(function (key) {
     if (transactions[key].type === "income") {
       userIncome += +transactions[key].amount
@@ -142,30 +141,36 @@ export async function loader() {
 export async function action({ request }) {
   const formData = await request.formData()
   const body = Object.fromEntries(formData.entries())
+  let descriptionEr
+  let dateEr
+  let amountEr
+  let error
 
   if (+body.amount === 1) {
-    return {
-      amountErrorMessage: "The money is to low to add as transaction",
-      error: true,
-    }
+    amountEr = "the amount is too small"
+    error = true
   }
 
   const date = new Date(body.date)
   const currentDate = new Date()
   if (date > currentDate) {
-    return {
-      dateErrorMessage: "The date is in the future",
-      error: true,
-    }
+    dateEr = "the date is in the future"
+    error = true
   }
 
   const description = body.description
   const upperCaseLetters = description.match(/[A-Z]/g)
   if (upperCaseLetters?.length > 1) {
+    descriptionEr = "the description has more than 1 uppercase"
+    error = true
+  }
+
+  if (error) {
     return {
-      descriptionErrorMessage:
-        "The description has too many upper case letters",
-      error: true,
+      descriptionErrorMessage: descriptionEr,
+      dateErrorMessage: dateEr,
+      amountErrorMessage: amountEr,
+      error,
     }
   }
 

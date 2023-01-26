@@ -32,8 +32,10 @@ const ModalForm = ({ closeHandler }) => {
     setTodaysDate(e.target.value)
   }
 
+  console.log("actionData", actionData);
+
   return (
-    <Form ref={formRef} method="post">
+    <Form ref={formRef} method="post" replace>
       <div className="row">
         <div className="column">
           <label htmlFor="category">Category</label>
@@ -134,7 +136,10 @@ const ModalForm = ({ closeHandler }) => {
         </div>
       </div>
       <div className="submit-btns">
-        <button type="button" className="dismiss-btn" onClick={closeHandler}>
+        <button type="button" className="dismiss-btn" onClick={() => {
+          formRef.current?.reset()
+          closeHandler();
+        }}>
           Dismiss
         </button>
         <AddTransactionButton type="submit" />

@@ -12,7 +12,6 @@
 
 .modal {
   width: 1012px;
-  height: 605px;
   background: #F8FAFC;
   border-radius: 15px;
   position: absolute;
@@ -145,6 +144,7 @@
   display: flex;
   justify-content: flex-end;
   padding-right: 70px;
+  margin-bottom: 20px;
 }
 .modal form .submit-btns .dismiss-btn {
   font-style: normal;
