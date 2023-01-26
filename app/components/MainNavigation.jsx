@@ -14,7 +14,7 @@ export default function MainNavigation() {
           <NavLink to="/">Overview</NavLink>
         </li>
         <li>
-          <NavLink to="/history">Transaction History</NavLink>
+          <NavLink to="/transaction-history">Transaction History</NavLink>
         </li>
       </ul>
     </div>
