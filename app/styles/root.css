@@ -87,7 +87,6 @@ main {
 .main-nav-bg ul {
   margin-top: 90px;
   list-style: none;
-  padding-left: 22px;
 }
 .main-nav-bg ul li {
   font-style: normal;
@@ -99,7 +98,9 @@ main {
 .main-nav-bg ul li a {
   color: #D4D4D8;
   text-decoration: none;
+  padding-left: 22px;
 }
 .main-nav-bg ul li a.active {
   color: white;
+  border-left: 1px solid #D4D4D8;
 }
