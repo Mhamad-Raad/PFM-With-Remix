@@ -186,7 +186,6 @@ export async function action({ request }) {
 
 export function links() {
   return [
-    ...UpBarStyles(),
     ...ModalStyles(),
     ...AddTransactionButtonStyles(),
     ...ListMoneyTagsStyle(),

@@ -1,6 +1,9 @@
+import UpBar from "~/components/UpBar"
 
 export default function transaction_history() {
   return (
-    <h1>transaction-history</h1>
+    <div className="transaction-history-page column">
+      <UpBar title={"Transaction History"} />
+    </div>
   )
 }
