@@ -1,15 +1,21 @@
 import { Form, useTransition as useNavigation } from "@remix-run/react"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import AddTransactionButton from "../add-transaction-btn"
 
 const ModalForm = ({ closeHandler }) => {
+  const [transactionType, setTransactionType] = useState("income")
   const formRef = useRef()
   const navigation = useNavigation()
   const isAdding = navigation.state === "submitting"
   console.log(navigation.state)
   if (isAdding) {
     formRef.current?.reset()
-    // closeHandler()
+    closeHandler()
+  }
+
+  const changeHandler = (e) => {
+    console.log(e.target.value)
+    setTransactionType(e.target.value)
   }
 
   return (
@@ -17,11 +23,29 @@ const ModalForm = ({ closeHandler }) => {
       <div className="row">
         <div className="column">
           <label htmlFor="category">Category</label>
-          <select id="category" name="category" defaultValue={"Tech"} required>
-            <option value="Tech">Tech</option>
-            <option value="Food">Food</option>
-            <option value="Entertainment">Entertainment</option>
-          </select>
+          {transactionType === "income" ? (
+            <select
+              id="category"
+              name="category"
+              defaultValue={"Gift"}
+              required
+            >
+              <option value="Salary">Salary</option>
+              <option value="Loan">Loan</option>
+              <option value="Gift">Gift</option>
+            </select>
+          ) : (
+            <select
+              id="category"
+              name="category"
+              defaultValue={"Tech"}
+              required
+            >
+              <option value="Tech">Tech</option>
+              <option value="Food">Food</option>
+              <option value="Entertainment">Entertainment</option>
+            </select>
+          )}
         </div>
         <div className="column">
           <label htmlFor="date">Date</label>
@@ -50,12 +74,20 @@ const ModalForm = ({ closeHandler }) => {
               name="type"
               id="income"
               value="income"
+              onChange={changeHandler}
               defaultChecked
             />
             <label htmlFor="income" className="income-label">
               Income
             </label>
-            <input type="radio" name="type" id="expense" value="expense" />
+
+            <input
+              type="radio"
+              name="type"
+              id="expense"
+              value="expense"
+              onChange={changeHandler}
+            />
             <label htmlFor="expense" className="expense-label">
               Expense
             </label>
