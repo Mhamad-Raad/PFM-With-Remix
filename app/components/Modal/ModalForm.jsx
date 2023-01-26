@@ -13,9 +13,17 @@ const ModalForm = ({ closeHandler }) => {
     closeHandler()
   }
 
-  const changeHandler = (e) => {
+  const radiobuttonChangeHandler = (e) => {
     console.log(e.target.value)
     setTransactionType(e.target.value)
+  }
+
+  const [todaysDate, setTodaysDate] = useState(
+    new Date().toISOString().slice(0, 10)
+  )
+
+  const dateChangeHandler = (e) => {
+    setTodaysDate(e.target.value)
   }
 
   return (
@@ -54,12 +62,17 @@ const ModalForm = ({ closeHandler }) => {
             id="date"
             name="date"
             placeholder="Date"
+            value={todaysDate}
+            onChange={dateChangeHandler}
             required
           />
         </div>
         <div className="column">
           <label htmlFor="amount">Amount</label>
-          <input type="number" id="amount" name="amount" required />
+          <span className="currency-amount">
+            <span>$</span>
+            <input type="number" id="amount" name="amount" min={0} required />
+          </span>
         </div>
       </div>
 
@@ -74,7 +87,7 @@ const ModalForm = ({ closeHandler }) => {
               name="type"
               id="income"
               value="income"
-              onChange={changeHandler}
+              onChange={radiobuttonChangeHandler}
               defaultChecked
             />
             <label htmlFor="income" className="income-label">
@@ -86,7 +99,7 @@ const ModalForm = ({ closeHandler }) => {
               name="type"
               id="expense"
               value="expense"
-              onChange={changeHandler}
+              onChange={radiobuttonChangeHandler}
             />
             <label htmlFor="expense" className="expense-label">
               Expense
@@ -95,7 +108,7 @@ const ModalForm = ({ closeHandler }) => {
         </div>
         <div className="column">
           <label htmlFor="description">Description</label>
-          <textarea type="text" id="description" name="description" required />
+          <textarea type="text" id="description" name="description" minLength={0} maxLength={350} required />
         </div>
       </div>
       <div className="submit-btns">

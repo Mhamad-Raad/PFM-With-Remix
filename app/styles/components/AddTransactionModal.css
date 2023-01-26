@@ -69,6 +69,7 @@
   line-height: 19px;
   color: #111827;
   margin-right: 52px;
+  border: 1px solid #94A3B8;
 }
 .modal form #date {
   background: #FFFFFF;
@@ -78,12 +79,34 @@
   height: 48px;
   padding: 6px 8px 6px 12px;
   margin-right: 52px;
-}
-.modal form #amount {
   border: 1px solid #94A3B8;
+}
+.modal form .currency-amount {
+  border: 1px solid #94A3B8;
+  background: white;
   border-radius: 7px;
-  width: 223px;
   height: 49px;
+  width: 223px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal form .currency-amount span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  color: #94A3B8;
+}
+.modal form .currency-amount #amount {
+  width: 200px;
+  height: 45px;
+  border: none;
+  outline: none;
+}
+.modal form .currency-amount #amount:focus, .modal form .currency-amount #amount:active {
+  outline: none;
+  border: none;
 }
 .modal form #amount, .modal form #description {
   padding: 10px;
