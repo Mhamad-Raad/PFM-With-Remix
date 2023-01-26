@@ -2,8 +2,7 @@ import { useState } from "react"
 import { redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import UpBar, { links as UpBarStyles } from "~/components/UpBar"
-import { links as ModalStyles } from "~/components/Modal/AddTransactionModal"
-import Modal from "~/components/Modal/AddTransactionModal"
+import Modal, { links as ModalStyles } from "~/components/Modal/AddTransactionModal"
 import AddTransactionButton, {
   links as AddTransactionButtonStyles,
 } from "~/components/add-transaction-btn"

@@ -8,6 +8,7 @@ import {
 } from "@remix-run/react"
 
 import rootStyles from "~/styles/root.css"
+import transaction_historyStyles from "~/styles/pages/transaction-history.css"
 import MainNavigation, {
   links as MainNavigationStyles,
 } from "~/components/MainNavigation"
@@ -20,6 +21,10 @@ export const links = () => [
   {
     rel: "stylesheet",
     href: rootStyles,
+  },
+  {
+    rel: "stylesheet",
+    href: transaction_historyStyles,
   },
   ...MainNavigationStyles(),
 ]
@@ -52,5 +57,3 @@ export default function App() {
     </html>
   )
 }
-
-
