@@ -2,3 +2,19 @@
   width: calc(100% - 250px);
   height: 100vh;
 }
+
+.search-input {
+  width: 80%;
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+.search-bar-gr {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.search-bar-gr .search-icon {
+  background-color: white;
+}

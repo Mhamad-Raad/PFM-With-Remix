@@ -15,3 +15,5 @@ const searchBarIcon = () => (
     />
   </svg>
 )
+
+export default searchBarIcon
