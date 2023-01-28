@@ -34,6 +34,16 @@ main {
   margin-top: 0.5rem;
 }
 
+.error {
+  max-width: 25rem;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: rgb(107, 76, 141);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
 .overview-page {
   width: calc(100% - 250px);
   height: 100vh;
