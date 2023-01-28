@@ -13,7 +13,7 @@ import transaction_historyStyles from "~/styles/pages/transaction-history.css"
 import MainNavigation, {
   links as MainNavigationStyles,
 } from "~/components/MainNavigation"
-import {links as UpBarStyles} from './components/UpBar'
+import { links as UpBarStyles } from "./components/UpBar"
 
 /**
  * @returns {import("@remix-run/node").LinkDescriptor[]}
@@ -46,7 +46,7 @@ export default function App() {
     <html lang="en">
       <head>
         <Meta />
-        <Links />
+        <Linksasd />
       </head>
       <body>
         <main>
@@ -70,13 +70,14 @@ export function ErrorBoundary({ error }) {
         <title>an error occured!</title>
       </head>
       <body>
-        <main className="error">
+        <div className="error">
           <h1>an error occured!</h1>
           <p>error: {error.message}</p>
           <p>
             Back to <Link to="/">safety!</Link>
           </p>
-        </main>
+          <p>or come back later</p>
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
