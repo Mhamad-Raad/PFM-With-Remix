@@ -75,8 +75,6 @@ export default function transaction_history() {
   const categoryChangeHandler = (e) => {
     const { value } = e.target
     if (filters.dates) {
-      console.log(value)
-      console.log(filteredTransactions)
       setFilteredTransactions(
         allTransactions.filter(
           (transaction) =>
@@ -142,7 +140,6 @@ export default function transaction_history() {
     })
   }
 
-  console.log(filteredTransactions)
 
   return (
     <div className="transaction-history-page column">

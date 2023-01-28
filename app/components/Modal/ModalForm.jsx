@@ -13,14 +13,12 @@ const ModalForm = ({ closeHandler }) => {
   const actionData = useActionData()
   const isAdding = navigation.state === "submitting"
   if (isAdding && actionData !== undefined && !actionData.error) {
-    console.log("error", actionData.error)
-    console.log("adding", isAdding)
+    c
     formRef.current?.reset()
     closeHandler()
   }
 
   const radiobuttonChangeHandler = (e) => {
-    console.log(e.target.value)
     setTransactionType(e.target.value)
   }
 
@@ -31,8 +29,6 @@ const ModalForm = ({ closeHandler }) => {
   const dateChangeHandler = (e) => {
     setTodaysDate(e.target.value)
   }
-
-  console.log("actionData", actionData);
 
   return (
     <Form ref={formRef} method="post" replace>

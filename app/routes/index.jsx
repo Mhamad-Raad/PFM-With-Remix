@@ -85,7 +85,6 @@ export default function Overview() {
     if (thisMonthTransactions.length > 10) {
       thisMonthTransactions = thisMonthTransactions.slice(0, 10)
     }
-    // console.log("month")
     showntransactions = thisMonthTransactions
     shownTitle = "This Month"
   } else if (thisYearTransactions.length > 0) {
