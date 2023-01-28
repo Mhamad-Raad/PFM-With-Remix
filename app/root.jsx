@@ -70,9 +70,6 @@ export function ErrorBoundary({ error }) {
         <title>an error occured!</title>
       </head>
       <body>
-        <header>
-          <MainNavigation />
-        </header>
         <main className="error">
           <h1>an error occured!</h1>
           <p>error: {error.message}</p>
