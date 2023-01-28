@@ -31,6 +31,47 @@ export default function transaction_history() {
     filtered: false,
   })
 
+  const searchFilterHandler = (value) => {
+    if (filters.category && filters.dates) {
+      setFilteredTransactions(
+        allTransactions.filter(
+          (transaction) =>
+            transaction.category === filterValues.category &&
+            transaction.date >= filterValues.fromDate &&
+            transaction.date <= filterValues.toDate &&
+            transaction.description.toLowerCase().includes(value.toLowerCase())
+        )
+      )
+    } else if (filters.category) {
+      setFilteredTransactions(
+        allTransactions.filter(
+          (transaction) =>
+            transaction.category === filterValues.category &&
+            transaction.description.toLowerCase().includes(value.toLowerCase())
+        )
+      )
+    } else if (filters.dates) {
+      setFilteredTransactions(
+        allTransactions.filter(
+          (transaction) =>
+            transaction.date >= filterValues.fromDate &&
+            transaction.date <= filterValues.toDate &&
+            transaction.description.toLowerCase().includes(value.toLowerCase())
+        )
+      )
+    } else {
+      setFilteredTransactions(
+        allTransactions.filter((transaction) =>
+          transaction.description.toLowerCase().includes(value.toLowerCase())
+        )
+      )
+    }
+    setFilters({
+      ...filters,
+      filtered: true,
+    })
+  }
+
   const categoryChangeHandler = (e) => {
     const { value } = e.target
     if (filters.dates) {
@@ -61,6 +102,7 @@ export default function transaction_history() {
   }
 
   const dateFilterHandler = (fromDate, toDate) => {
+    
     if (filters.category) {
       setFilteredTransactions(
         filteredTransactions.filter(
@@ -106,7 +148,7 @@ export default function transaction_history() {
     <div className="transaction-history-page column">
       <UpBar title={"Transaction History"} />
       <main>
-        <SearchBar />
+        <SearchBar searchHandler={searchFilterHandler} />
         <FiltersBar
           categoryChangeHandler={categoryChangeHandler}
           dateFilterHandler={dateFilterHandler}
