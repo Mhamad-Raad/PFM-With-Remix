@@ -1,23 +1,28 @@
 .transaction-history-page {
   width: calc(100% - 250px);
   height: 100vh;
-}
 
-.search-input {
-  width: 80%;
-  height: 100%;
-  border: none;
-  outline: none;
+  main {
+    padding: 24px;
+    width: 100%;
+  }
 }
 
 .search-bar-gr {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  width: 100%;
   // background-color: white;
 
   .search-icon {
     // position: absolute;
     background-color: white;
+  }
+
+  .search-input {
+    width: 100%;
+    border: none;
+    outline: none;
   }
 }

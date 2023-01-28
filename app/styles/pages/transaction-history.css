@@ -2,19 +2,22 @@
   width: calc(100% - 250px);
   height: 100vh;
 }
-
-.search-input {
-  width: 80%;
-  height: 100%;
-  border: none;
-  outline: none;
+.transaction-history-page main {
+  padding: 24px;
+  width: 100%;
 }
 
 .search-bar-gr {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  width: 100%;
 }
 .search-bar-gr .search-icon {
   background-color: white;
+}
+.search-bar-gr .search-input {
+  width: 100%;
+  border: none;
+  outline: none;
 }
