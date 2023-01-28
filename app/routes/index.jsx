@@ -2,7 +2,9 @@ import { useState } from "react"
 import { redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import UpBar, { links as UpBarStyles } from "~/components/UpBar"
-import Modal, { links as ModalStyles } from "~/components/Modal/AddTransactionModal"
+import Modal, {
+  links as ModalStyles,
+} from "~/components/Modal/AddTransactionModal"
 import AddTransactionButton, {
   links as AddTransactionButtonStyles,
 } from "~/components/add-transaction-btn"
@@ -107,7 +109,7 @@ export default function Overview() {
 
   return (
     <>
-      {isModalOpen && <Modal closeHandler={switchModaltoFalse} />}
+      <Modal closeHandler={switchModaltoFalse} isModalOpen={isModalOpen} />
       <div className="overview-page">
         <UpBar title="Overview" />
         <main className="overview-page__content">

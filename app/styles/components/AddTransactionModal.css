@@ -10,6 +10,42 @@
   height: 100vh;
 }
 
+.ModalOpen {
+  animation: ModalOpenAnimation 0.3s ease-out;
+}
+
+.ModalClosed {
+  animation: ModalClosedAnimation 0.3s ease-out;
+}
+
+@keyframes ModalOpenAnimation {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, 8%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+@keyframes ModalClosedAnimation {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, 8%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+}
 .modal {
   width: 1012px;
   background: #F8FAFC;
