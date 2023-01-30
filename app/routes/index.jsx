@@ -8,9 +8,9 @@ import Modal, {
 import AddTransactionButton, {
   links as AddTransactionButtonStyles,
 } from "~/components/add-transaction-btn"
-import ListMoneyTags, {
-  links as ListMoneyTagsStyle,
-} from "~/components/MoneyTags/ListMoneyTags"
+// import ListMoneyTags, {
+//   links as ListMoneyTagsStyle,
+// } from "~/components/MoneyTags/ListMoneyTags"
 // import TransactionList, {
 //   links as TransactionListStyle,
 // } from "~/components/Transactions/TransactionList"
@@ -112,11 +112,11 @@ export default function Overview() {
       <div className="overview-page">
         <UpBar title="Overview" />
         <main className="overview-page__content">
-          <ListMoneyTags
+          {/* <ListMoneyTags
             income={userIncome}
             expense={userExpense}
             balance={userBalance}
-          />
+          /> */}
           <h1 className="overview-page__content__transaction-title">
             {shownTitle}
           </h1>
@@ -189,7 +189,7 @@ export function links() {
   return [
     ...ModalStyles(),
     ...AddTransactionButtonStyles(),
-    ...ListMoneyTagsStyle(),
+    // ...ListMoneyTagsStyle(),
     // ...TransactionListStyle(),
   ]
 }
