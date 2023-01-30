@@ -4,5 +4,27 @@
   gap: 18px;
   max-height: 300px;
   overflow-y: auto;
-  max-width: 904px;;
+  max-width: 904px;
+  
+
+  &::-webkit-scrollbar {
+      width: 10px;
+    }
+  
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #30475E;
+      border-radius: 7px;
+    }
+  
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #f05454;
+      border-radius: 7px;
+    }
+  
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #e33737;
+    }
 }

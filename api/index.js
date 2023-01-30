@@ -118,7 +118,7 @@ __export(root_exports, {
 var import_react3 = require("@remix-run/react");
 
 // app/styles/root.css
-var root_default = "/build/_assets/root-X5Z7ANST.css";
+var root_default = "/build/_assets/root-AKMLZTSW.css";
 
 // app/styles/pages/transaction-history.css
 var transaction_history_default = "/build/_assets/transaction-history-A6ASPLIZ.css";
@@ -396,7 +396,7 @@ function links4() {
 }
 
 // app/styles/components/Transactions/TransactionList.css
-var TransactionList_default = "/build/_assets/TransactionList-NQP7CIQ4.css";
+var TransactionList_default = "/build/_assets/TransactionList-E3X7VDKQ.css";
 
 // app/styles/components/Transactions/TransactionItem.css
 var TransactionItem_default = "/build/_assets/TransactionItem-X4FMCPH5.css";
@@ -1007,7 +1007,7 @@ function links11() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "dde60063", entry: { module: "/build/entry.client-ALPCLNHT.js", imports: ["/build/_shared/chunk-XEV5GIN2.js", "/build/_shared/chunk-ZRJSU26N.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-J55V7GR4.js", imports: ["/build/_shared/chunk-NUIMLIXV.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-EFBCJHGU.js", imports: ["/build/_shared/chunk-JO3AAWSF.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/transaction-history": { id: "routes/transaction-history", parentId: "root", path: "transaction-history", index: void 0, caseSensitive: void 0, module: "/build/routes/transaction-history-RXPKYG2I.js", imports: ["/build/_shared/chunk-JO3AAWSF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-DDE60063.js" };
+var assets_manifest_default = { version: "b00ba943", entry: { module: "/build/entry.client-ALPCLNHT.js", imports: ["/build/_shared/chunk-XEV5GIN2.js", "/build/_shared/chunk-ZRJSU26N.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-NKUFGQS4.js", imports: ["/build/_shared/chunk-NUIMLIXV.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-NS3D45H4.js", imports: ["/build/_shared/chunk-ULD6J2GQ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/transaction-history": { id: "routes/transaction-history", parentId: "root", path: "transaction-history", index: void 0, caseSensitive: void 0, module: "/build/routes/transaction-history-WERDPFUQ.js", imports: ["/build/_shared/chunk-ULD6J2GQ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-B00BA943.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

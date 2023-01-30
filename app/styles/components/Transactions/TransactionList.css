@@ -5,6 +5,23 @@
   max-height: 300px;
   overflow-y: auto;
   max-width: 904px;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.transactions-List::-webkit-scrollbar {
+  width: 10px;
+}
+.transactions-List::-webkit-scrollbar-track {
+  background: #30475E;
+  border-radius: 7px;
+}
+.transactions-List::-webkit-scrollbar-thumb {
+  background: #f05454;
+  border-radius: 7px;
+}
+.transactions-List::-webkit-scrollbar-thumb:hover {
+  background: #e33737;
 }
 
 /*# sourceMappingURL=TransactionList.css.map */
