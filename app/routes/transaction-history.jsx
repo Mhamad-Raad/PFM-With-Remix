@@ -1,5 +1,5 @@
-import { useLoaderData } from "@remix-run/react"
-import { useState, useRef } from "react"
+import { useLoaderData, useLocation } from "@remix-run/react"
+import { useState } from "react"
 
 import UpBar from "~/components/UpBar"
 import SearchBar from "~/components/SearchBar"
@@ -9,6 +9,9 @@ import TransactionList, {
 } from "~/components/Transactions/TransactionList"
 
 export default function transaction_history() {
+  const params = useLocation()
+  // URLSearchParams
+  const pageSeaarchParameter = +new URLSearchParams(params.search).get("page")
   const transactions = useLoaderData()
   let allTransactions = []
 
@@ -71,7 +74,6 @@ export default function transaction_history() {
       filtered: true,
     })
   }
-
   const categoryChangeHandler = (e) => {
     const { value } = e.target
     if (filters.dates) {
@@ -100,7 +102,6 @@ export default function transaction_history() {
   }
 
   const dateFilterHandler = (fromDate, toDate) => {
-    
     if (filters.category) {
       setFilteredTransactions(
         filteredTransactions.filter(
@@ -140,6 +141,33 @@ export default function transaction_history() {
     })
   }
 
+  let shownTransactions = []
+  let numberOfPages
+  let pages
+
+  if (filters.filtered) {
+    numberOfPages = Math.ceil(filteredTransactions.length / 5)
+    pages = []
+
+    for (let i = 0; i < numberOfPages; i++) {
+      pages.push(i)
+    }
+    shownTransactions = filteredTransactions.slice(
+      pageSeaarchParameter * 5,
+      pageSeaarchParameter * 5 + 5
+    )
+  } else {
+    numberOfPages = Math.ceil(allTransactions.length / 5)
+    pages = []
+
+    for (let i = 0; i < numberOfPages; i++) {
+      pages.push(i)
+    }
+    shownTransactions = allTransactions.slice(
+      pageSeaarchParameter * 5,
+      pageSeaarchParameter * 5 + 5
+    )
+  }
 
   return (
     <div className="transaction-history-page column">
@@ -151,12 +179,18 @@ export default function transaction_history() {
           dateFilterHandler={dateFilterHandler}
           resetFilters={resetFilters}
         />
-        <TransactionList
-          transactions={
-            filters.filtered ? filteredTransactions : allTransactions
-          }
-        />
+        <TransactionList transactions={shownTransactions} />
       </main>
+      <div className="pages">
+        {pages.map((page) => (
+          <a
+            href={`?page=${page}`}
+            className={pageSeaarchParameter === page ? "active" : undefined}
+          >
+            {page + 1}
+          </a>
+        ))}
+      </div>
     </div>
   )
 }

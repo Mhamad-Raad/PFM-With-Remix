@@ -11,5 +11,9 @@
   border-radius: 50px;
   border: none;
 }
+.add-transaction-btn:hover {
+  background: rgba(139, 183, 207, 0.25);
+  color: #064262;
+}
 
 /*# sourceMappingURL=add-transaction-btn.css.map */

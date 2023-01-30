@@ -8,6 +8,11 @@ export default function SearchBar({ searchHandler }) {
     searchHandler(searchRef.current.value)
   }
 
+  const resetSearch = () => {
+    searchRef.current.value = ""
+    searchHandler("")
+  }
+
   return (
     <span className="search-bar-gr">
       <i className="search-icon">
@@ -20,7 +25,7 @@ export default function SearchBar({ searchHandler }) {
         className="search-input"
         onChange={onChangeHandler}
       />
-      <button>Clear</button>
+      <button onClick={resetSearch}>Clear</button>
     </span>
   )
 }

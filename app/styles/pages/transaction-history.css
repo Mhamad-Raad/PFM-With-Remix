@@ -10,6 +10,42 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+.transaction-history-page .pages {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  width: 75%;
+  height: 48px;
+}
+.transaction-history-page .pages a {
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(28, 101, 140, 0.75);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: rgba(28, 101, 140, 0.75);
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.transaction-history-page .pages a:hover {
+  background-color: rgba(7, 59, 88, 0.75);
+  color: white;
+}
+.transaction-history-page .pages a.active {
+  border: 1px solid rgba(140, 28, 50, 0.75);
+  color: rgba(140, 28, 50, 0.75);
+}
+.transaction-history-page .pages a.active:hover {
+  background-color: rgba(88, 7, 7, 0.75);
+  color: white;
+}
 
 .search-bar-gr {
   display: flex;

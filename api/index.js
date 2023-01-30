@@ -121,7 +121,7 @@ var import_react3 = require("@remix-run/react");
 var root_default = "/build/_assets/root-AKMLZTSW.css";
 
 // app/styles/pages/transaction-history.css
-var transaction_history_default = "/build/_assets/transaction-history-A6ASPLIZ.css";
+var transaction_history_default = "/build/_assets/transaction-history-LHWLMFY5.css";
 
 // app/styles/components/MainNavigation/MainNavigation.css
 var MainNavigation_default = "/build/_assets/MainNavigation-BIQH5UUQ.css";
@@ -189,7 +189,7 @@ var import_jsx_runtime5 = require("react/jsx-runtime"), links3 = () => [
   ...links2()
 ], meta = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "Money Management",
   viewport: "width=device-width,initial-scale=1"
 });
 function App() {
@@ -285,7 +285,9 @@ function SearchBar({ searchHandler }) {
         }
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { children: "Clear" })
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { onClick: () => {
+      searchRef.current.value = "", searchHandler("");
+    }, children: "Clear" })
   ] });
 }
 
@@ -518,7 +520,7 @@ function links6() {
 var import_jsx_runtime15 = require("react/jsx-runtime");
 function transaction_history() {
   var _a;
-  let transactions = (0, import_react6.useLoaderData)(), allTransactions = [];
+  let params = (0, import_react6.useLocation)(), pageSeaarchParameter = +new URLSearchParams(params.search).get("page"), transactions = (0, import_react6.useLoaderData)(), allTransactions = [];
   (_a = Object.keys(transactions)) == null || _a.forEach((key) => {
     allTransactions.push({
       ...transactions[key],
@@ -533,88 +535,108 @@ function transaction_history() {
     category: !1,
     dates: !1,
     filtered: !1
-  });
+  }), searchFilterHandler = (value) => {
+    filters.category && filters.dates ? setFilteredTransactions(
+      allTransactions.filter(
+        (transaction) => transaction.category === filterValues.category && transaction.date >= filterValues.fromDate && transaction.date <= filterValues.toDate && transaction.description.toLowerCase().includes(value.toLowerCase())
+      )
+    ) : filters.category ? setFilteredTransactions(
+      allTransactions.filter(
+        (transaction) => transaction.category === filterValues.category && transaction.description.toLowerCase().includes(value.toLowerCase())
+      )
+    ) : filters.dates ? setFilteredTransactions(
+      allTransactions.filter(
+        (transaction) => transaction.date >= filterValues.fromDate && transaction.date <= filterValues.toDate && transaction.description.toLowerCase().includes(value.toLowerCase())
+      )
+    ) : setFilteredTransactions(
+      allTransactions.filter(
+        (transaction) => transaction.description.toLowerCase().includes(value.toLowerCase())
+      )
+    ), setFilters({
+      ...filters,
+      filtered: !0
+    });
+  }, categoryChangeHandler = (e) => {
+    let { value } = e.target;
+    filters.dates ? setFilteredTransactions(
+      allTransactions.filter(
+        (transaction) => transaction.category === value && transaction.date >= filterValues.fromDate && transaction.date <= filterValues.toDate
+      )
+    ) : setFilteredTransactions(
+      allTransactions.filter((transaction) => transaction.category === value)
+    ), setFilters({
+      ...filters,
+      category: !0,
+      filtered: !0
+    }), setFilterValues({
+      ...filterValues,
+      category: value
+    });
+  }, dateFilterHandler = (fromDate, toDate) => {
+    filters.category ? setFilteredTransactions(
+      filteredTransactions.filter(
+        (transaction) => transaction.date >= fromDate && transaction.date <= toDate && transaction.category === filterValues.category
+      )
+    ) : setFilteredTransactions(
+      allTransactions.filter(
+        (transaction) => transaction.date >= fromDate && transaction.date <= toDate
+      )
+    ), setFilters({
+      ...filters,
+      dates: !0,
+      filtered: !0
+    }), setFilterValues({
+      ...filterValues,
+      fromDate,
+      toDate
+    });
+  }, resetFilters = () => {
+    setFilteredTransactions([]), setFilters({
+      ...filters,
+      category: !1,
+      dates: !1,
+      filtered: !1
+    });
+  }, shownTransactions = [], numberOfPages, pages;
+  if (filters.filtered) {
+    numberOfPages = Math.ceil(filteredTransactions.length / 5), pages = [];
+    for (let i = 0; i < numberOfPages; i++)
+      pages.push(i);
+    shownTransactions = filteredTransactions.slice(
+      pageSeaarchParameter * 5,
+      pageSeaarchParameter * 5 + 5
+    );
+  } else {
+    numberOfPages = Math.ceil(allTransactions.length / 5), pages = [];
+    for (let i = 0; i < numberOfPages; i++)
+      pages.push(i);
+    shownTransactions = allTransactions.slice(
+      pageSeaarchParameter * 5,
+      pageSeaarchParameter * 5 + 5
+    );
+  }
   return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "transaction-history-page column", children: [
     /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(UpBar, { title: "Transaction History" }),
     /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("main", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(SearchBar, { searchHandler: (value) => {
-        filters.category && filters.dates ? setFilteredTransactions(
-          allTransactions.filter(
-            (transaction) => transaction.category === filterValues.category && transaction.date >= filterValues.fromDate && transaction.date <= filterValues.toDate && transaction.description.toLowerCase().includes(value.toLowerCase())
-          )
-        ) : filters.category ? setFilteredTransactions(
-          allTransactions.filter(
-            (transaction) => transaction.category === filterValues.category && transaction.description.toLowerCase().includes(value.toLowerCase())
-          )
-        ) : filters.dates ? setFilteredTransactions(
-          allTransactions.filter(
-            (transaction) => transaction.date >= filterValues.fromDate && transaction.date <= filterValues.toDate && transaction.description.toLowerCase().includes(value.toLowerCase())
-          )
-        ) : setFilteredTransactions(
-          allTransactions.filter(
-            (transaction) => transaction.description.toLowerCase().includes(value.toLowerCase())
-          )
-        ), setFilters({
-          ...filters,
-          filtered: !0
-        });
-      } }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(SearchBar, { searchHandler: searchFilterHandler }),
       /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
         FiltersBar,
         {
-          categoryChangeHandler: (e) => {
-            let { value } = e.target;
-            filters.dates ? setFilteredTransactions(
-              allTransactions.filter(
-                (transaction) => transaction.category === value && transaction.date >= filterValues.fromDate && transaction.date <= filterValues.toDate
-              )
-            ) : setFilteredTransactions(
-              allTransactions.filter((transaction) => transaction.category === value)
-            ), setFilters({
-              ...filters,
-              category: !0,
-              filtered: !0
-            }), setFilterValues({
-              ...filterValues,
-              category: value
-            });
-          },
-          dateFilterHandler: (fromDate, toDate) => {
-            filters.category ? setFilteredTransactions(
-              filteredTransactions.filter(
-                (transaction) => transaction.date >= fromDate && transaction.date <= toDate && transaction.category === filterValues.category
-              )
-            ) : setFilteredTransactions(
-              allTransactions.filter(
-                (transaction) => transaction.date >= fromDate && transaction.date <= toDate
-              )
-            ), setFilters({
-              ...filters,
-              dates: !0,
-              filtered: !0
-            }), setFilterValues({
-              ...filterValues,
-              fromDate,
-              toDate
-            });
-          },
-          resetFilters: () => {
-            setFilteredTransactions([]), setFilters({
-              ...filters,
-              category: !1,
-              dates: !1,
-              filtered: !1
-            });
-          }
+          categoryChangeHandler,
+          dateFilterHandler,
+          resetFilters
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-        TransactionList_default2,
-        {
-          transactions: filters.filtered ? filteredTransactions : allTransactions
-        }
-      )
-    ] })
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(TransactionList_default2, { transactions: shownTransactions })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "pages", children: pages.map((page) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+      "a",
+      {
+        href: `?page=${page}`,
+        className: pageSeaarchParameter === page ? "active" : void 0,
+        children: page + 1
+      }
+    )) })
   ] });
 }
 async function loader() {
@@ -665,7 +687,7 @@ var import_jsx_runtime16 = require("react/jsx-runtime"), CloseIcon = () => /* @_
 var import_react8 = require("@remix-run/react"), import_react9 = require("react");
 
 // app/styles/components/add-transaction-btn.css
-var add_transaction_btn_default = "/build/_assets/add-transaction-btn-E3UGLPOP.css";
+var add_transaction_btn_default = "/build/_assets/add-transaction-btn-UBAXHOYK.css";
 
 // app/components/add-transaction-btn.jsx
 var import_jsx_runtime17 = require("react/jsx-runtime"), AddTransactionButton = ({ clickHandler, type = "button" }) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { type, className: "add-transaction-btn", onClick: clickHandler, children: "Add Transaction" });
@@ -1007,7 +1029,7 @@ function links11() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "b00ba943", entry: { module: "/build/entry.client-ALPCLNHT.js", imports: ["/build/_shared/chunk-XEV5GIN2.js", "/build/_shared/chunk-ZRJSU26N.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-NKUFGQS4.js", imports: ["/build/_shared/chunk-NUIMLIXV.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-NS3D45H4.js", imports: ["/build/_shared/chunk-ULD6J2GQ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/transaction-history": { id: "routes/transaction-history", parentId: "root", path: "transaction-history", index: void 0, caseSensitive: void 0, module: "/build/routes/transaction-history-WERDPFUQ.js", imports: ["/build/_shared/chunk-ULD6J2GQ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-B00BA943.js" };
+var assets_manifest_default = { version: "d631ba26", entry: { module: "/build/entry.client-ZIOGNKPI.js", imports: ["/build/_shared/chunk-YMJST4LR.js", "/build/_shared/chunk-T72FSQ67.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-NFPMYWCR.js", imports: ["/build/_shared/chunk-YONMU3VJ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-BBOHWDPV.js", imports: ["/build/_shared/chunk-CBOQ56YF.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/transaction-history": { id: "routes/transaction-history", parentId: "root", path: "transaction-history", index: void 0, caseSensitive: void 0, module: "/build/routes/transaction-history-MY4DATCC.js", imports: ["/build/_shared/chunk-CBOQ56YF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-D631BA26.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
