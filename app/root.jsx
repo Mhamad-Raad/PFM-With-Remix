@@ -8,29 +8,29 @@ import {
   ScrollRestoration,
 } from "@remix-run/react"
 
-// import rootStyles from "~/styles/root.css"
-// import transaction_historyStyles from "~/styles/pages/transaction-history.css"
-// import MainNavigation, {
-//   links as MainNavigationStyles,
-// } from "~/components/MainNavigation"
-// import { links as UpBarStyles } from "./components/UpBar"
+import rootStyles from "~/styles/root.css"
+import transaction_historyStyles from "~/styles/pages/transaction-history.css"
+import MainNavigation, {
+  links as MainNavigationStyles,
+} from "~/components/MainNavigation"
+import { links as UpBarStyles } from "./components/UpBar"
 
 /**
  * @returns {import("@remix-run/node").LinkDescriptor[]}
  */
 
-// export const links = () => [
-//   {
-//     rel: "stylesheet",
-//     href: rootStyles,
-//   },
-//   {
-//     rel: "stylesheet",
-//     href: transaction_historyStyles,
-//   },
-//   // ...MainNavigationStyles(),
-//   // ...UpBarStyles(),
-// ]
+export const links = () => [
+  {
+    rel: "stylesheet",
+    href: rootStyles,
+  },
+  {
+    rel: "stylesheet",
+    href: transaction_historyStyles,
+  },
+  ...MainNavigationStyles(),
+  ...UpBarStyles(),
+]
 
 /**
  * @returns {import("@remix-run/node").MetaFunction}
@@ -50,7 +50,7 @@ export default function App() {
       </head>
       <body>
         <main>
-          {/* <MainNavigation /> */}
+          <MainNavigation />
           <Outlet />
         </main>
         <ScrollRestoration />
