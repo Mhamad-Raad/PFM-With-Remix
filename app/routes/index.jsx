@@ -122,7 +122,7 @@ export default function Overview() {
           </h1>
           {/* <TransactionList transactions={showntransactions} /> */}
           <div className="overview-page__content__transaction-btn-bg">
-            <AddTransactionButton clickHandler={switchModaltoTrue} />
+            {/* <AddTransactionButton clickHandler={switchModaltoTrue} /> */}
           </div>
         </main>
       </div>
@@ -188,7 +188,7 @@ export async function action({ request }) {
 export function links() {
   return [
     // ...ModalStyles(),
-    ...AddTransactionButtonStyles(),
+    // ...AddTransactionButtonStyles(),
     // ...ListMoneyTagsStyle(),
     // ...TransactionListStyle(),
   ]
