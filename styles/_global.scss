@@ -4,3 +4,42 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  font-family: 'Inter';
+  background: #E8E8E8;
+}
+
+button,a {
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.error {
+  max-width: 25rem;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: rgb(107, 76, 141);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}

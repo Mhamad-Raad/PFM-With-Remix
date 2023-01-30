@@ -1,0 +1,54 @@
+.item {
+  background: #F8FAFC;
+  border-radius: 7px;
+  height: 56px;
+  width: 100%;
+  justify-content: space-between;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-left: 15px;
+  padding-right: 16px;
+}
+.item__left {
+  gap: 14px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.item__left__text {
+  overflow: hidden;
+  width: 400px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.item__right {
+  gap: 14px;
+  justify-content: flex-end;
+  align-items: center;
+}
+.item__right__amount {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  border-radius: 6px;
+  padding: 5px 10px;
+  max-width: 150px;
+  max-height: 30px;
+}
+.item__right__date {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #334155;
+}
+
+.income {
+  background: rgba(14, 165, 233, 0.15);
+  color: #0EA5E9;
+}
+
+.expense {
+  background: rgba(239, 42, 76, 0.15);
+  color: #EF2A4C;
+}

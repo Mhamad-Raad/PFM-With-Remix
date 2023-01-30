@@ -1,0 +1,41 @@
+.transaction-history-page {
+  width: calc(100% - 250px);
+  height: 100vh;
+}
+.transaction-history-page main {
+  padding: 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.search-bar-gr {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  border-radius: 7px;
+  height: 48px;
+}
+.search-bar-gr .search-icon {
+  margin-left: 12px;
+  background-color: white;
+}
+.search-bar-gr .search-input {
+  padding-left: 10px;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+.search-bar-gr button {
+  width: 95px;
+  height: 48px;
+  background: rgba(28, 101, 140, 0.75);
+  border-radius: 0px 7px 7px 0px;
+  border: none;
+  color: white;
+}

@@ -1,0 +1,224 @@
+.modal-bg {
+  background: rgba(0, 0, 0, 0.35);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.ModalOpen {
+  animation: ModalOpenAnimation .3s ease-out;
+}
+
+.ModalClosed {
+  animation: ModalClosedAnimation .3s ease-out;
+}
+
+@keyframes ModalOpenAnimation {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+  }
+
+  50% {
+    opacity: 0.5;
+      transform: translate(-50%, 8%);
+  }
+
+  100% {
+    opacity: 1;
+      transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes ModalClosedAnimation {
+  0% {
+    opacity: 1;
+      transform: translate(-50%, -50%);
+  }
+
+  50% {
+    opacity: 0.8;
+      transform: translate(-50%, 8%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+}
+
+.modal {
+  width: 1012px;
+  background: #F8FAFC;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 25px;
+    background-color: white;
+    border-bottom: 1px solid #E5E5E5;
+    box-shadow: 0px 0.5px 4px rgba(0, 0, 0, 0.05);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    h2 {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: #000000;
+    }
+
+    button {
+      background: transparent;
+      border: none;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 38px;
+    margin-top: 70px;
+
+    label {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: #000000;
+      margin-bottom: 10px;
+    }
+
+    select {
+      padding: 6px 8px;
+      background: #FFFFFF;
+      box-shadow: inset 0px 0px 1px 0.1px rgba(0, 0, 0, 0.25);
+      border-radius: 7px;
+      width: 300px;
+      height: 48px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: #111827;
+      margin-right: 52px;
+      border: 1px solid #94A3B8;
+    }
+
+    #date {
+      background: #FFFFFF;
+      box-shadow: inset 0px 0px 1px 0.1px rgba(0, 0, 0, 0.25);
+      border-radius: 7px;
+      width: 240px;
+      height: 48px;
+      padding: 6px 8px 6px 12px;
+      margin-right: 52px;
+      border: 1px solid #94A3B8;
+    }
+
+    .currency-amount {
+      border: 1px solid #94A3B8;
+      background: white;
+      border-radius: 7px;
+      height: 49px;
+      width: 223px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 27px;
+        color: #94A3B8;
+      }
+      #amount {
+        width: 200px;
+        height: 45px;
+        border: none;
+        outline: none;
+        &:focus, &:active {
+          outline: none;
+          border: none;
+        }
+      }
+    }
+
+
+
+    #amount, #description {
+      padding: 10px;
+    }
+
+    .type-section {
+      margin-right: 140px;
+    }
+    
+    .second-row {
+      margin-top: 55px;
+    }
+
+    .type-title{
+      margin-bottom: 26px !important;
+    }
+
+    .income-label {
+      margin-right: 35px;
+      margin-left: 10px;
+      margin-bottom: 0;
+    }
+
+    .expense-label {
+      margin-bottom: 0;
+      margin-left: 10px;
+    }
+
+    .radio-btns {
+      display: flex;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    #description {
+      width: 584px;
+      height: 142px;
+      border-radius: 7px;
+      border: 1px solid #94A3B8;
+    }
+
+    .submit-btns {
+      margin-top: 90px;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 70px;
+      margin-bottom: 20px;
+
+      .dismiss-btn {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        padding: 8px 16px;
+        height: 40px;
+        margin-right: 50px;
+        background: transparent;
+        color: black;
+        border-radius: 50px;
+        border: 1.5px solid black;
+      }
+    }
+  }
+}

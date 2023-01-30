@@ -1,0 +1,36 @@
+.money-tag {
+  width: 280px;
+  height: 110px;
+  border-radius: 7px;
+  padding: 20px 30px;
+
+  &__header {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+
+    h2 {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    h3 {
+      padding: 3px 14px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+      border-radius: 12px;
+    }
+  }
+
+  &__cash {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    color: white
+  }
+}
