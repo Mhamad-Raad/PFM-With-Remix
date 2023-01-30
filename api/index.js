@@ -1,3 +1,4 @@
+"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -17,9 +18,17 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 )), __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: !0 }), mod);
 
-// <stdin>
-var stdin_exports = {};
-__export(stdin_exports, {
+// server.js
+var server_exports = {};
+__export(server_exports, {
+  default: () => server_default
+});
+module.exports = __toCommonJS(server_exports);
+var import_vercel = require("@remix-run/vercel");
+
+// server-entry-module:@remix-run/dev/server-build
+var server_build_exports = {};
+__export(server_build_exports, {
   assets: () => assets_manifest_default,
   assetsBuildDirectory: () => assetsBuildDirectory,
   entry: () => entry,
@@ -27,7 +36,6 @@ __export(stdin_exports, {
   publicPath: () => publicPath,
   routes: () => routes
 });
-module.exports = __toCommonJS(stdin_exports);
 
 // app/entry.server.jsx
 var entry_server_exports = {};
@@ -103,9 +111,14 @@ function handleBrowserRequest(request, responseStatusCode, responseHeaders, remi
 var root_exports = {};
 __export(root_exports, {
   ErrorBoundary: () => ErrorBoundary,
-  default: () => App
+  default: () => App,
+  meta: () => meta
 });
-var import_react2 = require("@remix-run/react"), import_jsx_runtime2 = require("react/jsx-runtime");
+var import_react2 = require("@remix-run/react"), import_jsx_runtime2 = require("react/jsx-runtime"), meta = () => ({
+  charset: "utf-8",
+  title: "New Remix App",
+  viewport: "width=device-width,initial-scale=1"
+});
 function App() {
   return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("html", { lang: "en", children: [
     /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("head", { children: [
@@ -161,7 +174,7 @@ function Overview() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "2a1be2d6", entry: { module: "/build/entry.client-3L6RLPBM.js", imports: ["/build/_shared/chunk-Q4COCMPE.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-QH56GQXS.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-636K2JOM.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-2A1BE2D6.js" };
+var assets_manifest_default = { version: "9a1c1867", entry: { module: "/build/entry.client-3L6RLPBM.js", imports: ["/build/_shared/chunk-Q4COCMPE.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-HQ7P7VW2.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-636K2JOM.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-9A1C1867.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
@@ -182,12 +195,8 @@ var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, 
     module: routes_exports
   }
 };
+
+// server.js
+var server_default = (0, import_vercel.createRequestHandler)({ build: server_build_exports, mode: "production" });
 // Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  assets,
-  assetsBuildDirectory,
-  entry,
-  future,
-  publicPath,
-  routes
-});
+0 && (module.exports = {});
