@@ -1,16 +1,32 @@
 import FilterBarIcon from "~/assets/Icons/FilterBarIcon"
 import FiltersBarStyle from "~/styles/components/FilterBar.css"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
+import { useLocation } from "@remix-run/react"
 
 export default function FiltersBar({
   categoryChangeHandler,
   dateFilterHandler,
   resetFilters,
 }) {
+  const params = useLocation()
+  let categoryParameter = new URLSearchParams(params.search).get("category")
+  let datesP = {}
+
+  datesP.from = new URLSearchParams(params.search).get("fromDate")
+  datesP.to = new URLSearchParams(params.search).get("toDate")
+
   const [dates, setDates] = useState({
     fromDate: "",
     toDate: "",
   })
+
+  if (
+    categoryParameter === null ||
+    categoryParameter === "" ||
+    categoryParameter !== categoryParameter
+  ) {
+    categoryParameter = "Tech"
+  }
 
   const onDateChange = (e) => {
     const { value } = e.target
@@ -20,7 +36,7 @@ export default function FiltersBar({
       [name]: value,
     })
   }
-  useMemo(() => {
+  useEffect(() => {
     if (dates.toDate < dates.fromDate) {
       return
     }
@@ -38,7 +54,7 @@ export default function FiltersBar({
             data-name="category"
             id="category"
             name="category"
-            defaultValue={"Tech"}
+            defaultValue={categoryParameter}
             required
             onChange={categoryChangeHandler}
           >
@@ -50,6 +66,7 @@ export default function FiltersBar({
             <option value="Entertainment">Entertainment</option>
           </select>
           <input
+            defaultValue={datesP.from}
             onChangeCapture={onDateChange}
             data-name="fromDate"
             type="date"
@@ -61,6 +78,7 @@ export default function FiltersBar({
 
           <input
             onChangeCapture={onDateChange}
+            defaultValue={datesP.to}
             data-name="toDate"
             type="date"
             id="date"

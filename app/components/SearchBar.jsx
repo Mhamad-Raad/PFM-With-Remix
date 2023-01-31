@@ -1,8 +1,11 @@
 import SearchBarIcon from "~/assets/Icons/SearchBarIcon"
 import { useRef } from 'react'
+import { useLocation } from '@remix-run/react'
 
 export default function SearchBar({ searchHandler }) {
-  const searchRef = useRef()
+  const params = useLocation()
+  const searchParameter = new URLSearchParams(params.search).get("search")
+  const searchRef = useRef(searchParameter)
 
   const onChangeHandler = () => {
     searchHandler(searchRef.current.value)
@@ -12,6 +15,8 @@ export default function SearchBar({ searchHandler }) {
     searchRef.current.value = ""
     searchHandler("")
   }
+
+
 
   return (
     <span className="search-bar-gr">
