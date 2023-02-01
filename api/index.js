@@ -121,7 +121,7 @@ var import_react3 = require("@remix-run/react");
 var root_default = "/build/_assets/root-3LFMLUZK.css";
 
 // app/styles/pages/transaction-history.css
-var transaction_history_default = "/build/_assets/transaction-history-SIBHAN3I.css";
+var transaction_history_default = "/build/_assets/transaction-history-AMJ33NPA.css";
 
 // app/styles/components/MainNavigation/MainNavigation.css
 var MainNavigation_default = "/build/_assets/MainNavigation-H42ORGUZ.css";
@@ -407,7 +407,7 @@ __export(transaction_history_exports, {
   links: () => links7,
   loader: () => loader
 });
-var import_react8 = require("@remix-run/react"), import_react9 = require("react");
+var import_react8 = require("@remix-run/react");
 
 // app/assets/Icons/SearchBarIcon.jsx
 var import_jsx_dev_runtime6 = require("react/jsx-dev-runtime"), searchBarIcon = () => /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
@@ -697,7 +697,7 @@ function links4() {
 }
 
 // app/styles/components/Transactions/TransactionList.css
-var TransactionList_default = "/build/_assets/TransactionList-M35RZYCM.css";
+var TransactionList_default = "/build/_assets/TransactionList-IHV5Q67M.css";
 
 // app/styles/components/Transactions/TransactionItem.css
 var TransactionItem_default = "/build/_assets/TransactionItem-ZKL4VCEA.css";
@@ -942,8 +942,8 @@ function transaction_history() {
   var _a;
   let params = (0, import_react8.useLocation)(), navigate = (0, import_react8.useNavigate)(), pageSeaarchParameter = +new URLSearchParams(params.search).get("page"), categoryParameter = new URLSearchParams(params.search).get("category"), datesP = {};
   datesP.from = new URLSearchParams(params.search).get("fromDate"), datesP.to = new URLSearchParams(params.search).get("toDate");
-  let searchParameter = new URLSearchParams(params.search).get("search"), searched = !0, categoried = !0, dated = !0;
-  categoryParameter === null || categoryParameter !== categoryParameter || categoryParameter === void 0 ? categoried = !1 : categoried = !0, datesP.from === null || datesP.from !== datesP.from || datesP.from === void 0 && datesP.to === null || datesP.to !== datesP.to || datesP.to === void 0 ? dated = !1 : dated = !0, console.log(dated), searchParameter === null || searchParameter !== searchParameter || searchParameter === void 0 ? searched = !1 : searched = !0, (pageSeaarchParameter === null || pageSeaarchParameter !== pageSeaarchParameter) && (pageSeaarchParameter = 0);
+  let searchParameter = new URLSearchParams(params.search).get("search");
+  (pageSeaarchParameter === null || pageSeaarchParameter !== pageSeaarchParameter) && (pageSeaarchParameter = 0);
   let transactions = (0, import_react8.useLoaderData)(), filtered = new URLSearchParams(params.search).get("filtered");
   (filtered === null || filtered === "" || filtered !== filtered) && (filtered = !1);
   let allTransactions = [], shownTransactions = [], numberOfPages, pages = 0;
@@ -953,41 +953,27 @@ function transaction_history() {
       id: key
     });
   });
-  let [filterValues, setFilterValues] = (0, import_react9.useState)({
-    category: categoried ? categoryParameter : "",
-    fromDate: dated ? datesP.from : "",
-    toDate: dated ? datesP.to : ""
-  }), [filters, setFilters] = (0, import_react9.useState)({
-    category: categoried,
-    dates: dated,
-    search: searched,
-    filtered: searched || dated || categoried
-  }), searchFilterHandler = (value) => {
+  let searchFilterHandler = (value) => {
     navigate(
-      `/transaction-history?${filters.filtered ? "filtered=true" : ""}&page=${pageSeaarchParameter}${value.trim().length > 0 ? `&search=${value.toLowerCase()}` : ""}${categoryParameter !== null ? `&category=${categoryParameter}` : ""}${datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ""}`
+      `/transaction-history?${filtered !== null ? "filtered=true" : ""}&page=${pageSeaarchParameter}${value.trim().length > 0 ? `&search=${value.toLowerCase()}` : ""}${categoryParameter !== null ? `&category=${categoryParameter}` : ""}${datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ""}`
     );
   }, categoryChangeHandler = (e) => {
-    console.log(filters.dates), console.log(filters.search);
     let { value } = e.target;
     navigate(
       `/transaction-history?filtered=true&page=${pageSeaarchParameter}&category=${value}${datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ""}${searchParameter !== null ? `&search=${searchParameter}` : ""}`
     );
   }, dateFilterHandler = (fromDate, toDate) => {
-    setFilterValues({
-      ...filterValues,
-      fromDate,
-      toDate
-    }), navigate(
+    navigate(
       `/transaction-history?filtered=true&page=${pageSeaarchParameter}${categoryParameter !== null ? `&category=${categoryParameter}` : ""}&fromDate=${fromDate}&toDate=${toDate}${searchParameter !== null ? `&search=${searchParameter}` : ""}`
     );
   }, resetFilters = () => {
-    console.log(filters.search), navigate(
-      `/transaction-history?${filters.filtered ? "filtered=true" : ""}${filters.search ? `&search=${searchParameter}` : ""}`
+    navigate(
+      `/transaction-history?${filtered !== null ? "filtered=true" : ""}${searchParameter !== null ? `&search=${searchParameter}` : ""}`
     );
   };
   pages = [];
-  let temp = [];
-  categoryParameter === categoryParameter && categoryParameter !== null && categoryParameter !== void 0 && datesP.from === datesP.from && datesP.from !== null && datesP.from !== void 0 && datesP.to === datesP.to && datesP.to !== null && datesP.to !== void 0 ? temp = allTransactions.filter((transaction) => transaction.category === categoryParameter && transaction.date >= datesP.from && transaction.date <= datesP.to) : categoryParameter === categoryParameter && categoryParameter !== null && categoryParameter !== void 0 ? temp = allTransactions.filter((transaction) => transaction.category === categoryParameter) : datesP.from === datesP.from && datesP.from !== null && datesP.from !== void 0 && datesP.to === datesP.to && datesP.to !== null && datesP.to !== void 0 ? temp = allTransactions.filter((transaction) => transaction.date >= datesP.from && transaction.date <= datesP.to) : temp = allTransactions, searched && (temp = temp.filter((transaction) => transaction.description.toLowerCase().includes(searchParameter))), numberOfPages = Math.ceil(temp.length / 5), temp.length > 0 && (shownTransactions = temp.slice(
+  let tempArray = [];
+  categoryParameter === categoryParameter && categoryParameter !== null && categoryParameter !== void 0 && datesP.from === datesP.from && datesP.from !== null && datesP.from !== void 0 && datesP.to === datesP.to && datesP.to !== null && datesP.to !== void 0 ? tempArray = allTransactions.filter((transaction) => transaction.category === categoryParameter && transaction.date >= datesP.from && transaction.date <= datesP.to) : categoryParameter === categoryParameter && categoryParameter !== null && categoryParameter !== void 0 ? tempArray = allTransactions.filter((transaction) => transaction.category === categoryParameter) : datesP.from === datesP.from && datesP.from !== null && datesP.from !== void 0 && datesP.to === datesP.to && datesP.to !== null && datesP.to !== void 0 ? tempArray = allTransactions.filter((transaction) => transaction.date >= datesP.from && transaction.date <= datesP.to) : tempArray = allTransactions, searchParameter !== null && (tempArray = tempArray.filter((transaction) => transaction.description.toLowerCase().includes(searchParameter))), numberOfPages = Math.ceil(tempArray.length / 5), tempArray.length > 0 && (shownTransactions = tempArray.slice(
     pageSeaarchParameter * 5,
     pageSeaarchParameter * 5 + 5
   ));
@@ -996,13 +982,13 @@ function transaction_history() {
   return /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("div", { className: "transaction-history-page column", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(UpBar, { title: "Transaction History" }, void 0, !1, {
       fileName: "app/routes/transaction-history.jsx",
-      lineNumber: 197,
+      lineNumber: 141,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("main", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(SearchBar, { searchHandler: searchFilterHandler }, void 0, !1, {
         fileName: "app/routes/transaction-history.jsx",
-        lineNumber: 199,
+        lineNumber: 143,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
@@ -1016,25 +1002,25 @@ function transaction_history() {
         !1,
         {
           fileName: "app/routes/transaction-history.jsx",
-          lineNumber: 200,
+          lineNumber: 144,
           columnNumber: 9
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(TransactionList_default2, { transactions: shownTransactions }, void 0, !1, {
         fileName: "app/routes/transaction-history.jsx",
-        lineNumber: 205,
+        lineNumber: 149,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/transaction-history.jsx",
-      lineNumber: 198,
+      lineNumber: 142,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("div", { className: "pages", children: pages.map((page) => /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
       import_react8.Link,
       {
-        to: `?page=${page}${filters.filtered ? "&filtered=true" : ""}${categoryParameter !== null ? `&category=${categoryParameter}` : ""}${filters.dates ? `&fromDate=${filterValues.fromDate}&toDate=${filterValues.toDate}` : ""}`,
+        to: `?page=${page}${filtered !== null ? "&filtered=true" : ""}${categoryParameter !== null ? `&category=${categoryParameter}` : ""}${datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ""}`,
         className: pageSeaarchParameter === page ? "active" : "",
         children: page + 1
       },
@@ -1042,18 +1028,18 @@ function transaction_history() {
       !1,
       {
         fileName: "app/routes/transaction-history.jsx",
-        lineNumber: 209,
+        lineNumber: 153,
         columnNumber: 11
       },
       this
     )) }, void 0, !1, {
       fileName: "app/routes/transaction-history.jsx",
-      lineNumber: 207,
+      lineNumber: 151,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/transaction-history.jsx",
-    lineNumber: 196,
+    lineNumber: 140,
     columnNumber: 5
   }, this);
 }
@@ -1074,7 +1060,7 @@ __export(routes_exports, {
   links: () => links11,
   loader: () => loader2
 });
-var import_react12 = require("react"), import_node2 = require("@remix-run/node"), import_react13 = require("@remix-run/react");
+var import_react11 = require("react"), import_node2 = require("@remix-run/node"), import_react12 = require("@remix-run/react");
 
 // app/styles/components/AddTransactionModal.css
 var AddTransactionModal_default = "/build/_assets/AddTransactionModal-6ZHME7XI.css";
@@ -1118,7 +1104,7 @@ var import_jsx_dev_runtime16 = require("react/jsx-dev-runtime"), CloseIcon = () 
 ), CloseIcon_default = CloseIcon;
 
 // app/components/Modal/ModalForm.jsx
-var import_react10 = require("@remix-run/react"), import_react11 = require("react");
+var import_react9 = require("@remix-run/react"), import_react10 = require("react");
 
 // app/styles/components/add-transaction-btn.css
 var add_transaction_btn_default = "/build/_assets/add-transaction-btn-NUS7LQTS.css";
@@ -1137,19 +1123,19 @@ var add_transaction_btn_default2 = AddTransactionButton;
 // app/components/Modal/ModalForm.jsx
 var import_jsx_dev_runtime18 = require("react/jsx-dev-runtime"), ModalForm = ({ closeHandler }) => {
   var _a;
-  let [transactionType, setTransactionType] = (0, import_react11.useState)("income"), formRef = (0, import_react11.useRef)(), navigation = (0, import_react10.useTransition)(), actionData = (0, import_react10.useActionData)();
-  navigation.state === "submitting" && actionData !== void 0 && !actionData.error && (c, (_a = formRef.current) == null || _a.reset(), closeHandler());
+  let [transactionType, setTransactionType] = (0, import_react10.useState)("income"), formRef = (0, import_react10.useRef)(), navigation = (0, import_react9.useTransition)(), actionData = (0, import_react9.useActionData)();
+  navigation.state === "submitting" && actionData !== void 0 && !actionData.error && ((_a = formRef.current) == null || _a.reset(), closeHandler());
   let radiobuttonChangeHandler = (e) => {
     setTransactionType(e.target.value);
-  }, [todaysDate, setTodaysDate] = (0, import_react11.useState)(
+  }, [todaysDate, setTodaysDate] = (0, import_react10.useState)(
     new Date().toISOString().slice(0, 10)
   );
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(import_react10.Form, { ref: formRef, method: "post", replace: !0, children: [
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(import_react9.Form, { ref: formRef, method: "post", replace: !0, children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "row", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "column", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("label", { htmlFor: "category", children: "Category" }, void 0, !1, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 37,
+          lineNumber: 36,
           columnNumber: 11
         }, this),
         transactionType === "income" ? /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(
@@ -1162,17 +1148,17 @@ var import_jsx_dev_runtime18 = require("react/jsx-dev-runtime"), ModalForm = ({ 
             children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("option", { value: "Salary", children: "Salary" }, void 0, !1, {
                 fileName: "app/components/Modal/ModalForm.jsx",
-                lineNumber: 45,
+                lineNumber: 44,
                 columnNumber: 15
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("option", { value: "Loan", children: "Loan" }, void 0, !1, {
                 fileName: "app/components/Modal/ModalForm.jsx",
-                lineNumber: 46,
+                lineNumber: 45,
                 columnNumber: 15
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("option", { value: "Gift", children: "Gift" }, void 0, !1, {
                 fileName: "app/components/Modal/ModalForm.jsx",
-                lineNumber: 47,
+                lineNumber: 46,
                 columnNumber: 15
               }, this)
             ]
@@ -1181,7 +1167,7 @@ var import_jsx_dev_runtime18 = require("react/jsx-dev-runtime"), ModalForm = ({ 
           !0,
           {
             fileName: "app/components/Modal/ModalForm.jsx",
-            lineNumber: 39,
+            lineNumber: 38,
             columnNumber: 13
           },
           this
@@ -1195,17 +1181,17 @@ var import_jsx_dev_runtime18 = require("react/jsx-dev-runtime"), ModalForm = ({ 
             children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("option", { value: "Tech", children: "Tech" }, void 0, !1, {
                 fileName: "app/components/Modal/ModalForm.jsx",
-                lineNumber: 56,
+                lineNumber: 55,
                 columnNumber: 15
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("option", { value: "Food", children: "Food" }, void 0, !1, {
                 fileName: "app/components/Modal/ModalForm.jsx",
-                lineNumber: 57,
+                lineNumber: 56,
                 columnNumber: 15
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("option", { value: "Entertainment", children: "Entertainment" }, void 0, !1, {
                 fileName: "app/components/Modal/ModalForm.jsx",
-                lineNumber: 58,
+                lineNumber: 57,
                 columnNumber: 15
               }, this)
             ]
@@ -1214,20 +1200,20 @@ var import_jsx_dev_runtime18 = require("react/jsx-dev-runtime"), ModalForm = ({ 
           !0,
           {
             fileName: "app/components/Modal/ModalForm.jsx",
-            lineNumber: 50,
+            lineNumber: 49,
             columnNumber: 13
           },
           this
         )
       ] }, void 0, !0, {
         fileName: "app/components/Modal/ModalForm.jsx",
-        lineNumber: 36,
+        lineNumber: 35,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "column", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("label", { htmlFor: "date", children: "Date" }, void 0, !1, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 63,
+          lineNumber: 62,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(
@@ -1247,63 +1233,63 @@ var import_jsx_dev_runtime18 = require("react/jsx-dev-runtime"), ModalForm = ({ 
           !1,
           {
             fileName: "app/components/Modal/ModalForm.jsx",
-            lineNumber: 64,
+            lineNumber: 63,
             columnNumber: 11
           },
           this
         ),
         (actionData == null ? void 0 : actionData.dateErrorMessage) && /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("p", { className: "error-msg", children: actionData.dateErrorMessage }, void 0, !1, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 74,
+          lineNumber: 73,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/components/Modal/ModalForm.jsx",
-        lineNumber: 62,
+        lineNumber: 61,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "column", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("label", { htmlFor: "amount", children: "Amount" }, void 0, !1, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 78,
+          lineNumber: 77,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("span", { className: "currency-amount", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("span", { children: "$" }, void 0, !1, {
             fileName: "app/components/Modal/ModalForm.jsx",
-            lineNumber: 80,
+            lineNumber: 79,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("input", { type: "number", id: "amount", name: "amount", min: 0, required: !0 }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("input", { type: "number", id: "amount", name: "amount", min: 0, max: "9999999", required: !0 }, void 0, !1, {
             fileName: "app/components/Modal/ModalForm.jsx",
-            lineNumber: 81,
+            lineNumber: 80,
             columnNumber: 13
           }, this)
         ] }, void 0, !0, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 79,
+          lineNumber: 78,
           columnNumber: 11
         }, this),
         (actionData == null ? void 0 : actionData.amountErrorMessage) && /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("p", { className: "error-msg", children: actionData.amountErrorMessage }, void 0, !1, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 84,
+          lineNumber: 83,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/components/Modal/ModalForm.jsx",
-        lineNumber: 77,
+        lineNumber: 76,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/components/Modal/ModalForm.jsx",
-      lineNumber: 35,
+      lineNumber: 34,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "row second-row", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "column type-section", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("label", { htmlFor: "type", className: "type-title", children: "Type" }, void 0, !1, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 91,
+          lineNumber: 90,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "row radio-btns", children: [
@@ -1321,14 +1307,14 @@ var import_jsx_dev_runtime18 = require("react/jsx-dev-runtime"), ModalForm = ({ 
             !1,
             {
               fileName: "app/components/Modal/ModalForm.jsx",
-              lineNumber: 95,
+              lineNumber: 94,
               columnNumber: 13
             },
             this
           ),
           /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("label", { htmlFor: "income", className: "income-label", children: "Income" }, void 0, !1, {
             fileName: "app/components/Modal/ModalForm.jsx",
-            lineNumber: 103,
+            lineNumber: 102,
             columnNumber: 13
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(
@@ -1344,30 +1330,30 @@ var import_jsx_dev_runtime18 = require("react/jsx-dev-runtime"), ModalForm = ({ 
             !1,
             {
               fileName: "app/components/Modal/ModalForm.jsx",
-              lineNumber: 107,
+              lineNumber: 106,
               columnNumber: 13
             },
             this
           ),
           /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("label", { htmlFor: "expense", className: "expense-label", children: "Expense" }, void 0, !1, {
             fileName: "app/components/Modal/ModalForm.jsx",
-            lineNumber: 114,
+            lineNumber: 113,
             columnNumber: 13
           }, this)
         ] }, void 0, !0, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 94,
+          lineNumber: 93,
           columnNumber: 11
         }, this)
       ] }, void 0, !0, {
         fileName: "app/components/Modal/ModalForm.jsx",
-        lineNumber: 90,
+        lineNumber: 89,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "column", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("label", { htmlFor: "description", children: "Description" }, void 0, !1, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 120,
+          lineNumber: 119,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(
@@ -1384,48 +1370,48 @@ var import_jsx_dev_runtime18 = require("react/jsx-dev-runtime"), ModalForm = ({ 
           !1,
           {
             fileName: "app/components/Modal/ModalForm.jsx",
-            lineNumber: 121,
+            lineNumber: 120,
             columnNumber: 11
           },
           this
         ),
         (actionData == null ? void 0 : actionData.descriptionErrorMessage) && /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("p", { className: "error-msg", children: actionData.descriptionErrorMessage }, void 0, !1, {
           fileName: "app/components/Modal/ModalForm.jsx",
-          lineNumber: 130,
+          lineNumber: 129,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/components/Modal/ModalForm.jsx",
-        lineNumber: 119,
+        lineNumber: 118,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/components/Modal/ModalForm.jsx",
-      lineNumber: 89,
+      lineNumber: 88,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "submit-btns", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("button", { type: "button", className: "dismiss-btn", onClick: () => {
         var _a2;
-        (_a2 = formRef.current) == null || _a2.reset(), closeHandler();
+        closeHandler(), (_a2 = formRef.current) == null || _a2.reset();
       }, children: "Dismiss" }, void 0, !1, {
         fileName: "app/components/Modal/ModalForm.jsx",
-        lineNumber: 135,
+        lineNumber: 134,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(add_transaction_btn_default2, { type: "submit" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(add_transaction_btn_default2, { type: "submit", clickHandler: closeHandler }, void 0, !1, {
         fileName: "app/components/Modal/ModalForm.jsx",
-        lineNumber: 141,
+        lineNumber: 140,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/components/Modal/ModalForm.jsx",
-      lineNumber: 134,
+      lineNumber: 133,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/components/Modal/ModalForm.jsx",
-    lineNumber: 34,
+    lineNumber: 33,
     columnNumber: 5
   }, this);
 }, ModalForm_default = ModalForm;
@@ -1666,7 +1652,7 @@ function getCurrentWeekNumber() {
 var import_jsx_dev_runtime22 = require("react/jsx-dev-runtime");
 function Overview() {
   var _a;
-  let [isModalOpen, setIsModalOpen] = (0, import_react12.useState)(!1), transactions = (0, import_react13.useLoaderData)(), userBalance = 0, userIncome = 0, userExpense = 0, currentDateYear = new Date().getFullYear(), currentDateMonth = new Date().getMonth(), currentWeek = getCurrentWeekNumber(), thisYearTransactions = [], thisMonthTransactions = [], thisWeekTransactions = [], showntransactions = [], shownTitle = "Empty";
+  let [isModalOpen, setIsModalOpen] = (0, import_react11.useState)(!1), transactions = (0, import_react12.useLoaderData)(), userBalance = 0, userIncome = 0, userExpense = 0, currentDateYear = new Date().getFullYear(), currentDateMonth = new Date().getMonth(), currentWeek = getCurrentWeekNumber(), thisYearTransactions = [], thisMonthTransactions = [], thisWeekTransactions = [], showntransactions = [], shownTitle = "Empty";
   (_a = Object.keys(transactions)) == null || _a.forEach(function(key) {
     transactions[key].type === "income" ? userIncome += +transactions[key].amount : userExpense += +transactions[key].amount;
     let date = new Date(transactions[key].date);
@@ -1686,19 +1672,19 @@ function Overview() {
   }), userBalance = userIncome - userExpense, thisWeekTransactions.length > 0 ? (thisWeekTransactions.length > 10 && (thisWeekTransactions = thisWeekTransactions.slice(0, 10)), showntransactions = thisWeekTransactions, shownTitle = "This Week") : thisMonthTransactions.length > 0 ? (thisMonthTransactions.length > 10 && (thisMonthTransactions = thisMonthTransactions.slice(0, 10)), showntransactions = thisMonthTransactions, shownTitle = "This Month") : thisYearTransactions.length > 0 ? (thisYearTransactions.length > 10 && (thisYearTransactions = thisYearTransactions.slice(0, 10)), showntransactions = thisYearTransactions, shownTitle = "This Year") : (showntransactions.splice(0, 10), shownTitle = "No Recent Transaction");
   let switchModaltoTrue = () => {
     setIsModalOpen(!0);
+  }, switchModaltoFalse = () => {
+    setIsModalOpen(!1);
   };
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)(import_jsx_dev_runtime22.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)(AddTransactionModal, { closeHandler: () => {
-      setIsModalOpen(!1);
-    }, isModalOpen }, void 0, !1, {
+  return console.log(isModalOpen), /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)(import_jsx_dev_runtime22.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)(AddTransactionModal, { closeHandler: switchModaltoFalse, isModalOpen }, void 0, !1, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 111,
+      lineNumber: 113,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)("div", { className: "overview-page", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)(UpBar, { title: "Overview" }, void 0, !1, {
         fileName: "app/routes/index.jsx",
-        lineNumber: 113,
+        lineNumber: 115,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)("main", { className: "overview-page__content", children: [
@@ -1713,43 +1699,43 @@ function Overview() {
           !1,
           {
             fileName: "app/routes/index.jsx",
-            lineNumber: 115,
+            lineNumber: 117,
             columnNumber: 11
           },
           this
         ),
         /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)("h1", { className: "overview-page__content__transaction-title", children: shownTitle }, void 0, !1, {
           fileName: "app/routes/index.jsx",
-          lineNumber: 120,
+          lineNumber: 122,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)(TransactionList_default2, { transactions: showntransactions }, void 0, !1, {
           fileName: "app/routes/index.jsx",
-          lineNumber: 123,
+          lineNumber: 125,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)("div", { className: "overview-page__content__transaction-btn-bg", children: /* @__PURE__ */ (0, import_jsx_dev_runtime22.jsxDEV)(add_transaction_btn_default2, { clickHandler: switchModaltoTrue }, void 0, !1, {
           fileName: "app/routes/index.jsx",
-          lineNumber: 125,
+          lineNumber: 127,
           columnNumber: 13
         }, this) }, void 0, !1, {
           fileName: "app/routes/index.jsx",
-          lineNumber: 124,
+          lineNumber: 126,
           columnNumber: 11
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/index.jsx",
-        lineNumber: 114,
+        lineNumber: 116,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/index.jsx",
-      lineNumber: 112,
+      lineNumber: 114,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/index.jsx",
-    lineNumber: 110,
+    lineNumber: 112,
     columnNumber: 5
   }, this);
 }
@@ -1787,7 +1773,7 @@ function links11() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "a5ce881e", entry: { module: "/build/entry.client-AKM2M3H2.js", imports: ["/build/_shared/chunk-O7OED4HK.js", "/build/_shared/chunk-SNKHZTVM.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-QA5XJN7W.js", imports: ["/build/_shared/chunk-FSKF2HWX.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-AEJFTRDL.js", imports: ["/build/_shared/chunk-ANAAECQQ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/transaction-history": { id: "routes/transaction-history", parentId: "root", path: "transaction-history", index: void 0, caseSensitive: void 0, module: "/build/routes/transaction-history-NRP5PNYL.js", imports: ["/build/_shared/chunk-ANAAECQQ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-A5CE881E.js" };
+var assets_manifest_default = { version: "80230dbd", entry: { module: "/build/entry.client-AKM2M3H2.js", imports: ["/build/_shared/chunk-O7OED4HK.js", "/build/_shared/chunk-SNKHZTVM.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-E7EWZ6OV.js", imports: ["/build/_shared/chunk-FSKF2HWX.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-AP2E3RCU.js", imports: ["/build/_shared/chunk-6GPB4C52.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/transaction-history": { id: "routes/transaction-history", parentId: "root", path: "transaction-history", index: void 0, caseSensitive: void 0, module: "/build/routes/transaction-history-LEJVPHSP.js", imports: ["/build/_shared/chunk-6GPB4C52.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-80230DBD.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

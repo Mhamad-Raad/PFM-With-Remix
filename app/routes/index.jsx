@@ -106,6 +106,8 @@ export default function Overview() {
     setIsModalOpen(false)
   }
 
+  console.log(isModalOpen)
+
   return (
     <>
       <Modal closeHandler={switchModaltoFalse} isModalOpen={isModalOpen} />

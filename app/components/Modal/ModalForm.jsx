@@ -13,7 +13,6 @@ const ModalForm = ({ closeHandler }) => {
   const actionData = useActionData()
   const isAdding = navigation.state === "submitting"
   if (isAdding && actionData !== undefined && !actionData.error) {
-    c
     formRef.current?.reset()
     closeHandler()
   }
@@ -78,7 +77,7 @@ const ModalForm = ({ closeHandler }) => {
           <label htmlFor="amount">Amount</label>
           <span className="currency-amount">
             <span>$</span>
-            <input type="number" id="amount" name="amount" min={0} required />
+            <input type="number" id="amount" name="amount" min={0} max={'9999999'} required />
           </span>
           {actionData?.amountErrorMessage && (
             <p className="error-msg">{actionData.amountErrorMessage}</p>
@@ -133,12 +132,12 @@ const ModalForm = ({ closeHandler }) => {
       </div>
       <div className="submit-btns">
         <button type="button" className="dismiss-btn" onClick={() => {
-          formRef.current?.reset()
           closeHandler();
+          formRef.current?.reset()
         }}>
           Dismiss
         </button>
-        <AddTransactionButton type="submit" />
+        <AddTransactionButton type="submit" clickHandler={closeHandler} />
       </div>
     </Form>
   )

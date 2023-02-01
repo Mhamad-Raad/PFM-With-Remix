@@ -4,7 +4,6 @@
   gap: 18px;
   max-height: 300px;
   overflow-y: auto;
-  max-width: 904px;
   /* Track */
   /* Handle */
   /* Handle on hover */
@@ -23,5 +22,3 @@
 .transactions-List::-webkit-scrollbar-thumb:hover {
   background: #e33737;
 }
-
-/*# sourceMappingURL=TransactionList.css.map */

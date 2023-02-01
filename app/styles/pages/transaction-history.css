@@ -16,7 +16,7 @@
   justify-content: flex-end;
   align-items: center;
   gap: 20px;
-  width: 75%;
+  width: 97%;
   height: 48px;
 }
 .transaction-history-page .pages a {
@@ -75,5 +75,3 @@
   border: none;
   color: white;
 }
-
-/*# sourceMappingURL=transaction-history.css.map */

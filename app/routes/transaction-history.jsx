@@ -1,5 +1,4 @@
 import { Link, useLoaderData, useLocation, useNavigate } from "@remix-run/react"
-import { useState } from "react"
 
 import UpBar from "~/components/UpBar"
 import SearchBar from "~/components/SearchBar"
@@ -19,41 +18,7 @@ export default function transaction_history() {
   datesP.from = new URLSearchParams(params.search).get("fromDate")
   datesP.to = new URLSearchParams(params.search).get("toDate")
   const searchParameter = new URLSearchParams(params.search).get("search")
-  let searched = true
-  let categoried = true
-  let dated = true
-  if (
-    categoryParameter === null ||
-    categoryParameter !== categoryParameter ||
-    categoryParameter === undefined
-  ) {
-    categoried = false
-  } else {
-    categoried = true
-  }
 
-  if (
-    datesP.from === null ||
-    datesP.from !== datesP.from ||
-    (datesP.from === undefined && datesP.to === null) ||
-    datesP.to !== datesP.to ||
-    datesP.to === undefined
-  ) {
-    dated = false
-  } else {
-    dated = true
-  }
-  console.log(dated)
-
-  if (
-    searchParameter === null ||
-    searchParameter !== searchParameter ||
-    searchParameter === undefined
-  ) {
-    searched = false
-  } else {
-    searched = true
-  }
   if (
     pageSeaarchParameter === null ||
     pageSeaarchParameter !== pageSeaarchParameter
@@ -76,22 +41,10 @@ export default function transaction_history() {
     })
   })
 
-  const [filterValues, setFilterValues] = useState({
-    category: categoried ? categoryParameter : "",
-    fromDate: dated ? datesP.from : "",
-    toDate: dated ? datesP.to : "",
-  })
-  const [filters, setFilters] = useState({
-    category: categoried,
-    dates: dated,
-    search: searched,
-    filtered: searched || dated || categoried,
-  })
-
   const searchFilterHandler = (value) => {
     navigate(
       `/transaction-history?${
-        filters.filtered ? `filtered=true` : ``
+        filtered !== null ? `filtered=true` : ``
       }&page=${pageSeaarchParameter}${
         value.trim().length > 0 ? `&search=${value.toLowerCase()}` : ``
       }${categoryParameter !== null ? `&category=${categoryParameter}` : ``}${
@@ -100,8 +53,6 @@ export default function transaction_history() {
     )
   }
   const categoryChangeHandler = (e) => {
-    console.log(filters.dates)
-    console.log(filters.search)
     const { value } = e.target
     navigate(
       `/transaction-history?filtered=true&page=${pageSeaarchParameter}&category=${value}${
@@ -111,12 +62,6 @@ export default function transaction_history() {
   }
 
   const dateFilterHandler = (fromDate, toDate) => {
-    setFilterValues({
-      ...filterValues,
-      fromDate,
-      toDate,
-    })
-
     navigate(
       `/transaction-history?filtered=true&page=${pageSeaarchParameter}${
         categoryParameter !== null ? `&category=${categoryParameter}` : ``
@@ -127,16 +72,15 @@ export default function transaction_history() {
   }
 
   const resetFilters = () => {
-    console.log(filters.search)
     navigate(
-      `/transaction-history?${filters.filtered ? `filtered=true` : ``}${
-        filters.search ? `&search=${searchParameter}` : ``
+      `/transaction-history?${filtered !== null ? `filtered=true` : ``}${
+        searchParameter !== null ? `&search=${searchParameter}` : ``
       }`
     )
   }
 
   pages = []
-  let temp = []
+  let tempArray = []
   if (
     categoryParameter === categoryParameter &&
     categoryParameter !== null &&
@@ -148,7 +92,7 @@ export default function transaction_history() {
     datesP.to !== null &&
     datesP.to !== undefined
   ) {
-    temp = allTransactions.filter((transaction) => {
+    tempArray = allTransactions.filter((transaction) => {
       return (
         transaction.category === categoryParameter &&
         transaction.date >= datesP.from &&
@@ -160,7 +104,7 @@ export default function transaction_history() {
     categoryParameter !== null &&
     categoryParameter !== undefined
   ) {
-    temp = allTransactions.filter((transaction) => {
+    tempArray = allTransactions.filter((transaction) => {
       return transaction.category === categoryParameter
     })
   } else if (
@@ -171,20 +115,20 @@ export default function transaction_history() {
     datesP.to !== null &&
     datesP.to !== undefined
   ) {
-    temp = allTransactions.filter((transaction) => {
+    tempArray = allTransactions.filter((transaction) => {
       return transaction.date >= datesP.from && transaction.date <= datesP.to
     })
   } else {
-    temp = allTransactions
+    tempArray = allTransactions
   }
-  if (searched) {
-    temp = temp.filter((transaction) => {
+  if (searchParameter !== null) {
+    tempArray = tempArray.filter((transaction) => {
       return transaction.description.toLowerCase().includes(searchParameter)
     })
   }
-  numberOfPages = Math.ceil(temp.length / 5)
-  if (temp.length > 0) {
-    shownTransactions = temp.slice(
+  numberOfPages = Math.ceil(tempArray.length / 5)
+  if (tempArray.length > 0) {
+    shownTransactions = tempArray.slice(
       pageSeaarchParameter * 5,
       pageSeaarchParameter * 5 + 5
     )
@@ -207,11 +151,11 @@ export default function transaction_history() {
       <div className="pages">
         {pages.map((page) => (
           <Link
-            to={`?page=${page}${filters.filtered ? `&filtered=true` : ``}${
+            to={`?page=${page}${filtered !== null ? `&filtered=true` : ``}${
               categoryParameter !== null ? `&category=${categoryParameter}` : ``
             }${
-              filters.dates
-                ? `&fromDate=${filterValues.fromDate}&toDate=${filterValues.toDate}`
+              datesP.to !== null
+                ? `&fromDate=${datesP.from}&toDate=${datesP.to}`
                 : ``
             }`}
             className={pageSeaarchParameter === page ? "active" : ``}
