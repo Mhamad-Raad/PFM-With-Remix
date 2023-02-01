@@ -121,7 +121,7 @@ var import_react3 = require("@remix-run/react");
 var root_default = "/build/_assets/root-3LFMLUZK.css";
 
 // app/styles/pages/transaction-history.css
-var transaction_history_default = "/build/_assets/transaction-history-AMJ33NPA.css";
+var transaction_history_default = "/build/_assets/transaction-history-UF3GLYVA.css";
 
 // app/styles/components/MainNavigation/MainNavigation.css
 var MainNavigation_default = "/build/_assets/MainNavigation-H42ORGUZ.css";
@@ -977,18 +977,18 @@ function transaction_history() {
     pageSeaarchParameter * 5,
     pageSeaarchParameter * 5 + 5
   ));
-  for (let i = 0; i < numberOfPages; i++)
+  for (let i = pageSeaarchParameter; i < pageSeaarchParameter + 3 && i < numberOfPages; i++)
     pages.push(i);
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("div", { className: "transaction-history-page column", children: [
+  return pages[pages.length - 1] + 2 > numberOfPages && numberOfPages > 3 && (pages = [numberOfPages - 3, numberOfPages - 2, numberOfPages - 1]), /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("div", { className: "transaction-history-page column", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(UpBar, { title: "Transaction History" }, void 0, !1, {
       fileName: "app/routes/transaction-history.jsx",
-      lineNumber: 141,
+      lineNumber: 151,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("main", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(SearchBar, { searchHandler: searchFilterHandler }, void 0, !1, {
         fileName: "app/routes/transaction-history.jsx",
-        lineNumber: 143,
+        lineNumber: 153,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
@@ -1002,44 +1002,72 @@ function transaction_history() {
         !1,
         {
           fileName: "app/routes/transaction-history.jsx",
-          lineNumber: 144,
+          lineNumber: 154,
           columnNumber: 9
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(TransactionList_default2, { transactions: shownTransactions }, void 0, !1, {
         fileName: "app/routes/transaction-history.jsx",
-        lineNumber: 149,
+        lineNumber: 159,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/transaction-history.jsx",
-      lineNumber: 142,
+      lineNumber: 152,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("div", { className: "pages", children: pages.map((page) => /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
-      import_react8.Link,
-      {
-        to: `?page=${page}${filtered !== null ? "&filtered=true" : ""}${categoryParameter !== null ? `&category=${categoryParameter}` : ""}${datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ""}`,
-        className: pageSeaarchParameter === page ? "active" : "",
-        children: page + 1
-      },
-      void 0,
-      !1,
-      {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("div", { className: "pages", children: [
+      pageSeaarchParameter >= 1 ? /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_jsx_dev_runtime15.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
+          import_react8.Link,
+          {
+            to: `?page=${0}${filtered !== null ? "&filtered=true" : ""}${categoryParameter !== null ? `&category=${categoryParameter}` : ""}${datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ""}${searchParameter !== null ? `&search=${searchParameter}` : ""}`,
+            children: "1"
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/transaction-history.jsx",
+            lineNumber: 164,
+            columnNumber: 13
+          },
+          this
+        ),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("span", { children: "..." }, void 0, !1, {
+          fileName: "app/routes/transaction-history.jsx",
+          lineNumber: 177,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, !0, {
         fileName: "app/routes/transaction-history.jsx",
-        lineNumber: 153,
+        lineNumber: 163,
         columnNumber: 11
-      },
-      this
-    )) }, void 0, !1, {
+      }, this) : null,
+      pages.map((page) => /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
+        import_react8.Link,
+        {
+          to: `?page=${page}${filtered !== null ? "&filtered=true" : ""}${categoryParameter !== null ? `&category=${categoryParameter}` : ""}${datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ""}`,
+          className: pageSeaarchParameter === page ? "active" : "",
+          children: page + 1
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/routes/transaction-history.jsx",
+          lineNumber: 182,
+          columnNumber: 11
+        },
+        this
+      ))
+    ] }, void 0, !0, {
       fileName: "app/routes/transaction-history.jsx",
-      lineNumber: 151,
+      lineNumber: 161,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/transaction-history.jsx",
-    lineNumber: 140,
+    lineNumber: 150,
     columnNumber: 5
   }, this);
 }
@@ -1773,7 +1801,7 @@ function links11() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "80230dbd", entry: { module: "/build/entry.client-AKM2M3H2.js", imports: ["/build/_shared/chunk-O7OED4HK.js", "/build/_shared/chunk-SNKHZTVM.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-E7EWZ6OV.js", imports: ["/build/_shared/chunk-FSKF2HWX.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-AP2E3RCU.js", imports: ["/build/_shared/chunk-6GPB4C52.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/transaction-history": { id: "routes/transaction-history", parentId: "root", path: "transaction-history", index: void 0, caseSensitive: void 0, module: "/build/routes/transaction-history-LEJVPHSP.js", imports: ["/build/_shared/chunk-6GPB4C52.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-80230DBD.js" };
+var assets_manifest_default = { version: "85c96b72", entry: { module: "/build/entry.client-AKM2M3H2.js", imports: ["/build/_shared/chunk-O7OED4HK.js", "/build/_shared/chunk-SNKHZTVM.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-6WMFLCV2.js", imports: ["/build/_shared/chunk-FSKF2HWX.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-AP2E3RCU.js", imports: ["/build/_shared/chunk-6GPB4C52.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/transaction-history": { id: "routes/transaction-history", parentId: "root", path: "transaction-history", index: void 0, caseSensitive: void 0, module: "/build/routes/transaction-history-57XFWBSZ.js", imports: ["/build/_shared/chunk-6GPB4C52.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, url: "/build/manifest-85C96B72.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

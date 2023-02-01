@@ -133,9 +133,19 @@ export default function transaction_history() {
       pageSeaarchParameter * 5 + 5
     )
   }
-  for (let i = 0; i < numberOfPages; i++) {
+
+  for (
+    let i = pageSeaarchParameter;
+    i < pageSeaarchParameter + 3 && i < numberOfPages;
+    i++
+  ) {
     pages.push(i)
   }
+
+  if (pages[pages.length - 1] + 2 > numberOfPages && numberOfPages > 3) {
+    pages = [numberOfPages - 3, numberOfPages - 2, numberOfPages - 1]
+  }
+
   return (
     <div className="transaction-history-page column">
       <UpBar title={"Transaction History"} />
@@ -149,6 +159,25 @@ export default function transaction_history() {
         <TransactionList transactions={shownTransactions} />
       </main>
       <div className="pages">
+        {pageSeaarchParameter >= 1 ? (
+          <>
+            <Link
+              to={`?page=${0}${filtered !== null ? `&filtered=true` : ``}${
+                categoryParameter !== null
+                  ? `&category=${categoryParameter}`
+                  : ``
+              }${
+                datesP.to !== null
+                  ? `&fromDate=${datesP.from}&toDate=${datesP.to}`
+                  : ``
+              }${searchParameter !== null ? `&search=${searchParameter}` : ``}`}
+            >
+              {"1"}
+            </Link>
+            <span>...</span>
+          </>
+        ) : null}
+
         {pages.map((page) => (
           <Link
             to={`?page=${page}${filtered !== null ? `&filtered=true` : ``}${

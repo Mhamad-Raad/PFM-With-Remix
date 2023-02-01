@@ -47,6 +47,10 @@
   color: white;
 }
 
+span {
+  height: 0;
+}
+
 .search-bar-gr {
   display: flex;
   flex-direction: row;
