@@ -46,7 +46,7 @@ export default function TransactionItem({ transaction }) {
       <div className="item__left row">
         <ShownIcon />
         <div className="item__left__text">
-          <p className="item__left__text__title">{transaction.description}</p>
+          <p className="item__left__text__title" title={transaction.description}>{transaction.description}</p>
         </div>
       </div>
       <div className="item__right row">
