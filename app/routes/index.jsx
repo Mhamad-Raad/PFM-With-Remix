@@ -14,17 +14,8 @@ import ListMoneyTags, {
 import TransactionList, {
   links as TransactionListStyle,
 } from "~/components/Transactions/TransactionList"
-
-const getWeekNumber = (date) => {
-  const weekNumber = Math.floor(date.getDate() / 7)
-  return weekNumber
-}
-
-const getCurrentWeekNumber = () => {
-  const currentDate = new Date()
-  const weekNumber = Math.floor(currentDate.getDate() / 7)
-  return weekNumber
-}
+import { numFormatter } from "~/util/numberConvention"
+import { getWeekNumber, getCurrentWeekNumber } from "~/util/week"
 
 export default function Overview() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -51,12 +42,21 @@ export default function Overview() {
       userExpense += +transactions[key].amount
     }
     const date = new Date(transactions[key].date)
-    if (currentWeek === getWeekNumber(date)) {
+    if (
+      currentWeek === getWeekNumber(date) &&
+      date.getMonth() === currentDateMonth && 
+      date.getFullYear() === currentDateYear
+    ) {
+      console.log(getWeekNumber(date))
+      console.log(currentWeek)
       thisWeekTransactions.push({
         ...transactions[key],
         id: key,
       })
-    } else if (date.getMonth() === currentDateMonth) {
+    } else if (
+      date.getMonth() === currentDateMonth &&
+      date.getFullYear === currentDateYear
+    ) {
       thisMonthTransactions.push({
         ...transactions[key],
         id: key,
@@ -113,9 +113,9 @@ export default function Overview() {
         <UpBar title="Overview" />
         <main className="overview-page__content">
           <ListMoneyTags
-            income={userIncome}
-            expense={userExpense}
-            balance={userBalance}
+            income={numFormatter(Number(userIncome))}
+            expense={numFormatter(Number(userExpense))}
+            balance={numFormatter(Number(userBalance))}
           />
           <h1 className="overview-page__content__transaction-title">
             {shownTitle}

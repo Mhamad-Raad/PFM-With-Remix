@@ -2,6 +2,7 @@ import TransactionItemStyle from "~/styles/components/Transactions/TransactionIt
 import WorkIcon from "~/assets/Icons/WorkIcon"
 import StudyIcon from "~/assets/Icons/StudyIcon"
 import TechIcon from "~/assets/Icons/TechIcon"
+import { numFormatter } from "~/util/numberConvention"
 
 export default function TransactionItem({ transaction }) {
   const transactionDate = new Date(transaction.date)
@@ -14,9 +15,17 @@ export default function TransactionItem({ transaction }) {
   let shownDate
 
   // if the transaction is from today, show "Today"
-  if (transactionDate.getDate() === today.getDate()) {
+  if (
+    transactionDate.getDate() === today.getDate() &&
+    today.getMonth() === transactionDate.getMonth &&
+    today.getFullYear() === transactionDate.getFullYear()
+  ) {
     shownDate = "Today"
-  } else if (transactionDate.getDate() === yesterday.getDate()) {
+  } else if (
+    transactionDate.getDate() === yesterday.getDate() &&
+    yesterday.getMonth() === transactionDate.getMonth &&
+    yesterday.getFullYear() === transactionDate.getFullYear()
+  ) {
     // if the transaction is from yesterday, show "Yesterday"
     shownDate = "Yesterday"
   } else {
@@ -48,8 +57,8 @@ export default function TransactionItem({ transaction }) {
           }`}
         >
           {transaction.type === "income"
-            ? `+ $${transaction.amount}`
-            : `- $${transaction.amount}`}
+            ? `+ $${numFormatter(Number(transaction.amount))}`
+            : `- $${numFormatter(Number(transaction.amount))}`}
         </p>
       </div>
     </div>

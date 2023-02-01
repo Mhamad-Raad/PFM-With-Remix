@@ -54,12 +54,16 @@ export default function transaction_history() {
   } else {
     searched = true
   }
-  if (pageSeaarchParameter === null || pageSeaarchParameter === NaN)
+  if (
+    pageSeaarchParameter === null ||
+    pageSeaarchParameter !== pageSeaarchParameter
+  )
     pageSeaarchParameter = 0
   const transactions = useLoaderData()
 
   let filtered = new URLSearchParams(params.search).get("filtered")
-  if (filtered === null || filtered === "" || filtered === NaN) filtered = false
+  if (filtered === null || filtered === "" || filtered !== filtered)
+    filtered = false
 
   let allTransactions = []
   let shownTransactions = []
@@ -90,11 +94,7 @@ export default function transaction_history() {
         filters.filtered ? `filtered=true` : ``
       }&page=${pageSeaarchParameter}${
         value.trim().length > 0 ? `&search=${value.toLowerCase()}` : ``
-      }${
-        categoryParameter !== null
-          ? `&category=${categoryParameter}`
-          : ``
-      }${
+      }${categoryParameter !== null ? `&category=${categoryParameter}` : ``}${
         datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ``
       }`
     )
