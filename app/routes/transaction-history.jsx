@@ -20,12 +20,39 @@ export default function transaction_history() {
   datesP.to = new URLSearchParams(params.search).get("toDate")
   const searchParameter = new URLSearchParams(params.search).get("search")
   let searched = true
+  let categoried = true
+  let dated = true
+  if (
+    categoryParameter === null ||
+    categoryParameter !== categoryParameter ||
+    categoryParameter === undefined
+  ) {
+    categoried = false
+  } else {
+    categoried = true
+  }
+
+  if (
+    datesP.from === null ||
+    datesP.from !== datesP.from ||
+    (datesP.from === undefined && datesP.to === null) ||
+    datesP.to !== datesP.to ||
+    datesP.to === undefined
+  ) {
+    dated = false
+  } else {
+    dated = true
+  }
+  console.log(dated)
+
   if (
     searchParameter === null ||
     searchParameter !== searchParameter ||
     searchParameter === undefined
   ) {
     searched = false
+  } else {
+    searched = true
   }
   if (pageSeaarchParameter === null || pageSeaarchParameter === NaN)
     pageSeaarchParameter = 0
@@ -46,57 +73,44 @@ export default function transaction_history() {
   })
 
   const [filterValues, setFilterValues] = useState({
-    category: "",
-    fromDate: "",
-    toDate: "",
+    category: categoried ? categoryParameter : "",
+    fromDate: dated ? datesP.from : "",
+    toDate: dated ? datesP.to : "",
   })
   const [filters, setFilters] = useState({
-    category: false,
-    dates: false,
-    filtered: filtered,
+    category: categoried,
+    dates: dated,
+    search: searched,
+    filtered: searched || dated || categoried,
   })
 
   const searchFilterHandler = (value) => {
     navigate(
-      `/transaction-history?filtered=true&page=${pageSeaarchParameter}${
-        value.length > 0 ? `&search=${value.toLowerCase()}` : ``
-      }${filters.category ? `&category=${filterValues.category.trim()}` : ``}${
-        filters.dates ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ``
+      `/transaction-history?${
+        filters.filtered ? `filtered=true` : ``
+      }&page=${pageSeaarchParameter}${
+        value.trim().length > 0 ? `&search=${value.toLowerCase()}` : ``
+      }${
+        categoryParameter !== null
+          ? `&category=${categoryParameter}`
+          : ``
+      }${
+        datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ``
       }`
     )
-    setFilters({
-      ...filters,
-      filtered: true,
-    })
   }
   const categoryChangeHandler = (e) => {
+    console.log(filters.dates)
+    console.log(filters.search)
     const { value } = e.target
-    setFilters({
-      ...filters,
-      category: true,
-      filtered: true,
-    })
-    setFilterValues({
-      ...filterValues,
-      category: value,
-    })
     navigate(
       `/transaction-history?filtered=true&page=${pageSeaarchParameter}&category=${value}${
-        filters.dates
-          ? `&fromDate=${datesP.from}&toDate=${datesP.to}${
-              searched ? `&search=${searchParameter}` : ``
-            }`
-          : ``
-      }`
+        datesP.to !== null ? `&fromDate=${datesP.from}&toDate=${datesP.to}` : ``
+      }${searchParameter !== null ? `&search=${searchParameter}` : ``}`
     )
   }
 
   const dateFilterHandler = (fromDate, toDate) => {
-    setFilters({
-      ...filters,
-      dates: true,
-      filtered: true,
-    })
     setFilterValues({
       ...filterValues,
       fromDate,
@@ -105,22 +119,20 @@ export default function transaction_history() {
 
     navigate(
       `/transaction-history?filtered=true&page=${pageSeaarchParameter}${
-        categoryParameter ? `&category=${categoryParameter}` : ``
+        categoryParameter !== null ? `&category=${categoryParameter}` : ``
       }&fromDate=${fromDate}&toDate=${toDate}${
-        searched ? `&search=${searchParameter}` : ``
+        searchParameter !== null ? `&search=${searchParameter}` : ``
       }`
     )
   }
 
   const resetFilters = () => {
-    setFilteredTransactions([])
-    setFilters({
-      ...filters,
-      category: false,
-      dates: false,
-      filtered: false,
-    })
-    navigate("/transaction-history")
+    console.log(filters.search)
+    navigate(
+      `/transaction-history?${filters.filtered ? `filtered=true` : ``}${
+        filters.search ? `&search=${searchParameter}` : ``
+      }`
+    )
   }
 
   pages = []

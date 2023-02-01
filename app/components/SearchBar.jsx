@@ -25,6 +25,7 @@ export default function SearchBar({ searchHandler }) {
       </i>
       <input
         ref={searchRef}
+        defaultValue={searchParameter}
         type="text"
         placeholder="Search"
         className="search-input"
